@@ -1,0 +1,9 @@
+.news-card-list{
+  display: grid;
+  width: auto;
+  margin: auto;
+  margin-bottom: 0px;
+  margin-top: 64px;
+  grid-gap: 18px; 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}

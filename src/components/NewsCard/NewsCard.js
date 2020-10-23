@@ -1,15 +1,17 @@
 import React from 'react';
 import './NewsCard.css';
+import save from '../../images/save.svg';
+import saved from '../../images/saved.svg';
 
-function NewsCard() {
+function NewsCard(props) {
   return (
-    <section className="NewsCard">
-      <img className="NewsCard__image" alt='Изображение к статье'/>
-      <button className="NewsCard__button"></button>
-      <p className="NewsCard__info NewsCard__date">Дата статьи</p>
-      <h1 className="NewsCard__info NewsCard__title">Название статьи</h1>
-      <h2 className="NewsCard__info text NewsCard__text">Текст статьи</h2>
-      <h3 className="NewsCard__info NewsCard__source">Источник статьи</h3>
+    <section className="news-card" >
+      <div className="news-card__image" style={{ backgroundImage: `url(${props.articleData.image})` }}/>
+      <button className="news-card__button" style={{ backgroundImage: `url(${props.articleData.save ? saved : save})` }}></button>
+      <p className="news-card__info news-card__date">{props.articleData.date}</p>
+      <h1 className="news-card__info news-card__title">{props.articleData.title}</h1>
+      <h2 className="news-card__info news-card__text">{props.articleData.text}</h2>
+      <h3 className="news-card__info news-card__source">{props.articleData.source}</h3>
     </section>
   )
 };

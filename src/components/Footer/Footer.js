@@ -1,23 +1,27 @@
 import React from 'react';
 import './Footer.css';
+import facebook from '../../images/fb.svg';
+import github from '../../images/git.svg';
 
 function Footer() {
   return (
-    <nav className="Footer">
-      <p className="Footer__copyright">&copy; Evgeniya Olta 2020</p>
-      <ul className="Footer__links">
-        <li className="Footer__link">
-          <a href='#a'>Главная</a>
+    <nav className="footer">
+      <p className="footer__copyright">&copy; Supersite, Powered by News API</p>
+      <ul className="footer__links">
+        <li>
+          <a className="footer__link" href='#a'>Главная</a>
         </li>
-        <li className="Footer__link">
-          <a href='#a'>Яндекс.Практикум</a>
+        <li>
+          <a className="footer__link" href="https://www.facebook.com/yandex.praktikum">Яндекс.Практикум</a>
         </li>
-        <li className="Footer__link">
-          <img src='' alt='github' />
-        </li>
-        <li className="Footer__link">
-          <img src='' alt='facebook' />
-        </li>
+        <div className="footer__social-icons">
+          <li>
+            <img className="footer__social-icon" src={github} alt='github' href="https://github.com/EvgeniyaOlta/news-explorer-frontend" />
+          </li>
+          <li>
+            <img className="footer__social-icon" src={facebook} alt='facebook' href="https://www.facebook.com/yandex.praktikum/"/>
+          </li>
+        </div>
       </ul>
     </nav>
   )

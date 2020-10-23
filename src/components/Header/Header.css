@@ -1,6 +1,25 @@
-.Header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  align-items: center;
+  width: 100%;
+  padding-top: 30px;
+  border-bottom: 1px rgba(255,255,255,0.3) solid;
+}
+
+.header__title{
+  font-family: Robotoslab, Arial;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  font-style: normal;
+  color: white;
+  padding-bottom: 26px;
+  margin: 0px;
+  padding-left: 104px;
+}

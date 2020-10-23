@@ -1,31 +1,68 @@
-# news-explorer-frontend
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#### Автор: Евгения Ольта 
+## Available Scripts
 
-Дипломная работа в рамках курса "Веб-разработчик".
+In the project directory, you can run:
 
+### `npm start`
 
-## Описание проекта
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Проект представляет собой одностраничный сайт, созданный с использованием HTML и CSS и React.
-Весь код написан по методологии БЭМ. Структура стилей построена по правилам Nested БЭМ.
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-При написании кода были использованы:
+### `npm test`
 
-### Флексбокс-верстка.
-Работа  с гибким контейнером и гибкими элементами позволила переопределять порядок элементов, автоматически определять размеры элементов так, чтобы они вписывались в  пространство блока, определять размеры по оси контейнера и по оси перпендикулярной ей.
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Позиционирование.
-Особого внимания заслуживает использование абсолютного позиционирования (position: absolute), вырывающего из потока элемента, а также позиционирования fixed, позволившее оформить секцию "popup", как это предполагает макет в Figma.
+### `npm run build`
 
-### Гриды.
-Grid использовался для создания сетки с фотографиями, что позволило сделать галерею гибкой и красочной при небольшом объеме CSS-кода.
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### React.
-React делает интерфейс интерактивным: пользователь может добавить и удалить фоторафию, поставить лайк, посмотреть фотографию в попапе, отредактировать данные своего профиля. 
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-### Регистрация и авторизация.
-Настроены регистрация и авторизация аутентификация. Пользователь переадресовывается на нужные страницы, созданы приватные маршруты.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Иное.
-Используется локальное хранилище, чтобы пользователю не приходилось повторно вводить пароль и логин для входа.
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

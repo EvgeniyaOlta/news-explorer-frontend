@@ -1,0 +1,46 @@
+.search-result{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 104px;
+  padding-right: 104px;
+  background-color: #F5F6F7;
+}
+
+.search-result__title{
+  font-family: Robotoslab, Arial;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  font-style: normal;
+  margin: 0px;
+  margin-top: 80px;
+  width: 100%;
+}
+
+.search-result__button{
+  align-self: center;
+  font-family: Roboto, Arial;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  font-style: normal;
+  width: 288px;
+  background-color: white;
+  margin: 0px;
+  margin-top: 64px;
+  margin-bottom: 80px;
+  border: 1px solid #D1D2D6;
+  border-radius: 100px;
+  border-style: none;
+  height: 64px;
+  overflow: hidden;
+}
+
+.search-result__button:hover {
+  opacity:0.9;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+  top: 1px;
+}

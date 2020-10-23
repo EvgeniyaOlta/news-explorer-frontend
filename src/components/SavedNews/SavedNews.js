@@ -1,14 +1,17 @@
 import React from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
+import articlesArray from '../../utils/utils';
 import './SavedNews.css';
 
 function SavedNews() {
+  let SavedNewsArray = articlesArray
+
   return (
-    <main className="SavedNews">
+    <div className="SavedNews">
       <SavedNewsHeader />
-      <NewsCardList />
-    </main>
+      <NewsCardList array={SavedNewsArray}></NewsCardList>
+    </div>
   )
 };
 

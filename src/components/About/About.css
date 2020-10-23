@@ -1,0 +1,48 @@
+.about{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  padding-left: 104px;
+  padding-right: 264px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  width: auto;
+}
+
+.about__avatar{
+  width: 464px;
+  height: 464px;
+  background-image: url(../../images/avatar.png);
+  margin: 0px;
+  margin-right: 56px;
+}
+
+.about__text{
+  width: 600px;
+  font-family: Robotoslab, Arial;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  font-style: normal;
+  margin: 0px;
+}
+
+.about__title{
+  font-family: Roboto, Arial;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  font-style: normal;
+  margin: 0px;
+  margin-bottom: 24px;
+}
+
+.about__description{
+  margin: auto;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  font-style: normal;
+}
