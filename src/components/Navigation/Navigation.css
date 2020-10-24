@@ -4,25 +4,29 @@
   position: relative;
   align-items: center;
   padding-right: 104px;
+  z-index: 3;
 }
 
 .navigation__button{
+  text-decoration: none;
+  background-color: transparent;
+  border-style: none;
   font-family: Roboto, Arial;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
   font-style: normal;
-  color:white;
   padding-top: 12px;
   padding-bottom: 28px;
   margin: 0px;
   margin-left: 34px;
   height: 100%;
-  border-bottom: 2px rgba(255,255,255) solid;
 }
 
-.navigation__button:last-of-type{
-  border: 1px solid #FFFFFF;
+.navigation__button_auth{
+  align-items: center;
+  color: white;
+  border: 1px solid;
   box-sizing: border-box;
   border-radius: 100px;
   margin-left: 32px;
@@ -31,6 +35,17 @@
   padding-top: 12px;
   padding-bottom: 15px;
   margin-bottom: 13px;
+  display: flex;
+  flex-direction: row;
+}
+.navigation__button_active-main{
+  color: white;
+  border-bottom: 3px rgba(255,255,255) solid;
+}
+
+.navigation__button_active-saved{
+  color: black;
+  border-bottom: 3px rgba(0,0,0) solid;
 }
 
 .navigation__button:hover {
@@ -43,4 +58,14 @@
   opacity:0.6;
   cursor: pointer;
   transition: all 0.5s ease;
+}
+
+.navigation__exite-icon{
+  background-image: url(../../images/exite.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 16px;
+  width: 17.5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }

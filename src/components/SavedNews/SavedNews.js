@@ -5,11 +5,15 @@ import articlesArray from '../../utils/utils';
 import './SavedNews.css';
 
 function SavedNews() {
-  let SavedNewsArray = articlesArray
+  function isSaved(article) {
+    return article.save === true;
+  }
+  
+  let SavedNewsArray = Array.from(articlesArray).filter(isSaved);
 
   return (
-    <div className="SavedNews">
-      <SavedNewsHeader />
+    <div className="saved-news">
+      <SavedNewsHeader array={SavedNewsArray}/>
       <NewsCardList array={SavedNewsArray}></NewsCardList>
     </div>
   )

@@ -1,9 +1,13 @@
 .news-card-list{
+  background-color: #F5F6F7;
   display: grid;
   width: auto;
-  margin: auto;
+  margin: 0px;
   margin-bottom: 0px;
-  margin-top: 64px;
+  padding-top: 62px;
+  padding-bottom: 62px;
+  padding-left: 104px;
+  padding-right: 104px;
   grid-gap: 18px; 
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
