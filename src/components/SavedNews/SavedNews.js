@@ -12,10 +12,10 @@ function SavedNews() {
   let SavedNewsArray = Array.from(articlesArray).filter(isSaved);
 
   return (
-    <div className="saved-news">
+    <section className="saved-news">
       <SavedNewsHeader array={SavedNewsArray}/>
       <NewsCardList array={SavedNewsArray}></NewsCardList>
-    </div>
+    </section>
   )
 };
 

@@ -13,10 +13,19 @@ function App() {
   const [isInfoTooltipOkOpen, setIsInfoTooltipOkOpen] = React.useState(false);
   const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  function openMenu() {
+    setIsMenuOpen(true);
+  }
+  function closeMenu() {
+    setIsMenuOpen(false);
+  } 
+  
   function handleLoginPopupClick(e) {
     e.preventDefault();
     closeAllPopups();
+    closeMenu();
     setIsLoginPopupOpen(true);
   }
   
@@ -35,7 +44,9 @@ function App() {
   function closeAllPopups() {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
-    setIsInfoTooltipOkOpen(false)
+    setIsInfoTooltipOkOpen(false);
+    setIsMenuOpen(false);
+    console.log(isMenuOpen)
   }
 
   function mainPageChange () {
@@ -49,9 +60,16 @@ function App() {
     <div className="root">
       <MainPageContext.Provider value={mainPage}> 
       <Header 
+      closeMenu={closeMenu}
+      openMenu={openMenu}
+      isMenuOpen={isMenuOpen}
       handleLoginPopupClick={handleLoginPopupClick}
       mainPageChange={mainPageChange}
-      savedPageChange={savedPageChange}/>
+      savedPageChange={savedPageChange}
+      isInfoTooltipOkOpen={isInfoTooltipOkOpen}
+      isLoginPopupOpen={isLoginPopupOpen}
+      isRegisterPopupOpen={isRegisterPopupOpen}/>
+      
         <Switch>
           <Route exact path="/"> 
             <Main
@@ -67,7 +85,7 @@ function App() {
             <SavedNews />
           </Route>
         </Switch>
-      <Footer />
+      <Footer mainPageChange={mainPageChange}/>
       </MainPageContext.Provider>
     </div>
   )

@@ -1,14 +1,29 @@
 .navigation{
   display: flex;
+  height: 100%;
   flex-direction: row;
   position: relative;
   align-items: center;
-  padding-right: 104px;
+  padding: 0px;
+  margin: 0px;
   z-index: 3;
+  width: fit-content;
+}
+
+.navigation__icon-menu{
+  visibility: hidden;
+  position: absolute;
+}
+.navigation__close-button{
+  visibility: hidden;
+  position: absolute;
+
 }
 
 .navigation__button{
+  text-align: center;
   text-decoration: none;
+  outline: none; 
   background-color: transparent;
   border-style: none;
   font-family: Roboto, Arial;
@@ -16,33 +31,32 @@
   font-size: 18px;
   line-height: 24px;
   font-style: normal;
-  padding-top: 12px;
-  padding-bottom: 28px;
   margin: 0px;
   margin-left: 34px;
-  height: 100%;
+  padding-top: 12px;
+  padding-bottom: 28px;
+  height: 24px;
 }
 
 .navigation__button_auth{
-  align-items: center;
+  display: flex;
+  direction: row;
   color: white;
   border: 1px solid;
   box-sizing: border-box;
   border-radius: 100px;
   margin-left: 32px;
+  margin-bottom: 13px;
+  margin-right: 104px;
+  height: 48px;
   padding-left: 12px;
   padding-right: 12px;
-  padding-top: 12px;
-  padding-bottom: 15px;
-  margin-bottom: 13px;
-  display: flex;
-  flex-direction: row;
 }
 .navigation__button_active-main{
   color: white;
   border-bottom: 3px rgba(255,255,255) solid;
 }
-
+ 
 .navigation__button_active-saved{
   color: black;
   border-bottom: 3px rgba(0,0,0) solid;
@@ -66,6 +80,147 @@
   background-size: contain;
   height: 16px;
   width: 17.5px;
+  margin-top:5px;
   margin-left: 5px;
   margin-right: 5px;
+}
+
+@media (max-width : 768px) {
+  
+  .navigation__button{
+    font-size: 16px;
+    line-height: 20px;
+    font-style: normal;
+    padding-top: 0px;
+    padding-bottom: 17px;
+  }
+  .navigation__button_auth{
+    height: 35px;
+    margin-top: -3px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    margin-right: 40px;
+  }
+  .navigation__exite-icon{
+    margin-top:0px;
+  }
+}
+
+@media (max-width : 640px) {
+  .navigation{
+    padding: 0px;
+    padding-right: 16px;
+  }
+  .navigation__icon-menu{
+    position: absolute;
+    top: -21px;
+    right: 16px;
+    border-style: none;
+    background-color: transparent;
+    visibility: visible;
+    width: 24px;
+    height: 24px;
+    padding-bottom: 16px;
+    background-size: cover;
+  }
+  .navigation__button{
+    visibility: hidden;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 0px;
+    margin-left: 40px;
+    margin-top: 102px;
+    padding: 0px;
+    border-style: none;
+    font-size: 18px;
+    line-height: 56px;
+  }
+  .navigation__button_auth{
+    position: absolute;
+    top: 0px;
+    left: -200px;
+    display: inline-block;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    align-self: center;
+    color: white;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 100px;
+    margin-top: 45px;
+    margin-right: 40px;
+    width: calc(100% - 80px);
+    height: 56px;
+  }
+  .navigation__button_auth_opened-menu{
+    position: relative;
+    left: 0px;
+  }
+  .navigation__button:last-of-type{
+    margin-top: 45px;
+  }
+  .navigation__icon-menu:hover{
+    opacity:0.6;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  } 
+  .navigation__close-button:hover{
+    opacity:0.6;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+  .navigation_opened-menu{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+    align-content: flex-start;
+    align-items: flex-start;
+    padding: 0px;
+    background: linear-gradient(to bottom, rgba(26, 27, 34, 1) 0%, rgba(26, 27, 34, 1) 50%,  rgba(0, 0, 0, 0.5) 50%,  rgba(0, 0, 0, 0.5) 100%);
+  }
+  .navigation__button_opened-menu{
+    visibility: visible;
+    position: relative;
+    color: white
+  }
+  .navigation__close-button_opened-menu{
+    visibility: visible;
+    position: absolute;
+    top: 21px;
+    right: 16px;
+    border-style: none;
+    background-color: transparent;
+    visibility: visible;
+    width: 24px;
+    height: 24px;
+    padding-bottom: 16px;
+    background-image: url(../../images/close.svg);
+    background-size: cover;
+  }
+  .navigation__icon-menu_opened-menu{
+    visibility: hidden;
+  }
+}
+
+@media (max-width : 320px) {
+  .navigation__button_opened-menu{
+    margin-left: 16px;
+  }
+  .navigation__button_auth{
+    margin-right: 16px;
+    width: calc(100% - 32px);
+  }
+  .navigation__icon-menu_hidden {
+    visibility: hidden;
+  }
 }

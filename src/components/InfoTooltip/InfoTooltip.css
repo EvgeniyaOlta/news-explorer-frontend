@@ -91,6 +91,7 @@
     margin-left: 36px;
     margin-bottom: 51px;
     border-style: none;
+    outline: none;
     background-color: transparent;
     color: #2F71E5;
   }
@@ -98,4 +99,16 @@
   .info-tooltip__link:hover{
     opacity:0.8;
     cursor: pointer;
+  }
+
+  @media (max-width : 500px) {
+    .info-tooltip__container{
+      margin-top: 20vh;
+    }
+    .info-tooltip__close-button{
+      width: 24px;
+      height: 24px;
+      top: -40px;
+      right: 16px;
+    }
   }

@@ -25,6 +25,7 @@
   font-size: 26px;
   line-height: 30px;
   font-style: normal;
+  text-align: center;
   color: #1A1B22;
   margin: 0px;
   margin-bottom: 16px;
@@ -40,4 +41,17 @@
   width: 365px;
   text-align: center;
   margin: 0px;
+}
+
+@media (max-width : 400px) {
+  .not-found__title{
+    width: 80vw;
+  }
+  .not-found__info-line{
+    width: 80vw;
+  }
+  .not-found{
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
 }

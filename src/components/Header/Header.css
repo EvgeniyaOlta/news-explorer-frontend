@@ -7,9 +7,9 @@
   top: 0px;
   left: 0px;
   align-items: center;
-  width: 100%;
   padding-top: 30px;
   border-bottom: 1px solid;
+  overflow: visible;
 }
 
 .header__title{
@@ -21,4 +21,31 @@
   padding-bottom: 26px;
   margin: 0px;
   padding-left: 104px;
+}
+
+@media (max-width : 768px) {
+  .header {
+    padding-top: 21px;
+  }
+  .header__title{
+    padding-bottom: 19px;
+    padding-left: 40px;
+  }
+}
+
+@media (max-width : 500px) {
+  .header {
+    padding-top: 16px;
+  }
+  .header__title{
+    padding-bottom: 16px;
+  }
+}
+
+@media (max-width : 320px) {
+  .header__title{
+    padding-left: 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
 }

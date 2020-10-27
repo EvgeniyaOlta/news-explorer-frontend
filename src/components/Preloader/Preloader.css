@@ -24,6 +24,7 @@
 }
 
 .preloader__info-line{
+  text-align: center;
   font-family: Roboto, Arial;
   font-weight: 400;
   font-size: 18px;
@@ -39,3 +40,12 @@
 	}
 }
 
+@media (max-width : 400px) {
+  .preloader{
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  .preloader__info-line{
+    width: 80vw;
+  }
+}
