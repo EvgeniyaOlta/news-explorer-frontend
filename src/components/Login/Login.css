@@ -113,5 +113,7 @@
 }
 
 @media (max-width : 500px) {
-  
+  .popup__input-error:last-of-type{
+    margin-bottom: 10px;  
+  }
 }

@@ -17,9 +17,12 @@
 .navigation__close-button{
   visibility: hidden;
   position: absolute;
-
 }
-
+.navigation__close-button:hover{
+  opacity:0.6;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
 .navigation__button{
   text-align: center;
   text-decoration: none;
@@ -86,7 +89,6 @@
 }
 
 @media (max-width : 768px) {
-  
   .navigation__button{
     font-size: 16px;
     line-height: 20px;
@@ -112,67 +114,6 @@
     padding: 0px;
     padding-right: 16px;
   }
-  .navigation__icon-menu{
-    position: absolute;
-    top: -21px;
-    right: 16px;
-    border-style: none;
-    background-color: transparent;
-    visibility: visible;
-    width: 24px;
-    height: 24px;
-    padding-bottom: 16px;
-    background-size: cover;
-  }
-  .navigation__button{
-    visibility: hidden;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    margin: 0px;
-    margin-left: 40px;
-    margin-top: 102px;
-    padding: 0px;
-    border-style: none;
-    font-size: 18px;
-    line-height: 56px;
-  }
-  .navigation__button_auth{
-    position: absolute;
-    top: 0px;
-    left: -200px;
-    display: inline-block;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-    text-align: center;
-    align-self: center;
-    color: white;
-    border: 1px solid;
-    box-sizing: border-box;
-    border-radius: 100px;
-    margin-top: 45px;
-    margin-right: 40px;
-    width: calc(100% - 80px);
-    height: 56px;
-  }
-  .navigation__button_auth_opened-menu{
-    position: relative;
-    left: 0px;
-  }
-  .navigation__button:last-of-type{
-    margin-top: 45px;
-  }
-  .navigation__icon-menu:hover{
-    opacity:0.6;
-    cursor: pointer;
-    transition: all 0.5s ease;
-  } 
-  .navigation__close-button:hover{
-    opacity:0.6;
-    cursor: pointer;
-    transition: all 0.5s ease;
-  }
   .navigation_opened-menu{
     display: flex;
     flex-direction: column;
@@ -188,10 +129,71 @@
     padding: 0px;
     background: linear-gradient(to bottom, rgba(26, 27, 34, 1) 0%, rgba(26, 27, 34, 1) 50%,  rgba(0, 0, 0, 0.5) 50%,  rgba(0, 0, 0, 0.5) 100%);
   }
+
+  .navigation__icon-menu{
+    position: absolute;
+    top: -21px;
+    right: 16px;
+    border-style: none;
+    background-color: transparent;
+    visibility: visible;
+    width: 24px;
+    height: 24px;
+    padding-bottom: 16px;
+    background-size: cover;
+  }
+  .navigation__icon-menu:hover{
+    opacity:0.6;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  } 
+  .navigation__icon-menu_opened-menu{
+    visibility: hidden;
+  }
+  .navigation__icon-menu_hidden {
+    visibility: hidden;
+  }
+
+  .navigation__button{
+    visibility: hidden;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 0px;
+    margin-left: 40px;
+    margin-top: 102px;
+    padding: 0px;
+    border-style: none;
+    font-size: 18px;
+    line-height: 56px;
+  }
   .navigation__button_opened-menu{
     visibility: visible;
     position: relative;
     color: white
+  }
+  .navigation__button:last-of-type{
+    margin-top: 45px;
+  }
+  .navigation__button_auth{
+    position: absolute;
+    top: 0px;
+    left: -200px;
+  }
+  .navigation__button_auth_opened-menu{
+    visibility: visible;
+    position: relative;
+    color: white;
+    position: relative;
+    left: 0px;
+    display: inline;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-radius: 100px;
+    margin-top: 45px;
+    margin-right: 40px;
+    width: calc(100% - 80px);
+    height: 56px;
   }
   .navigation__close-button_opened-menu{
     visibility: visible;
@@ -207,20 +209,15 @@
     background-image: url(../../images/close.svg);
     background-size: cover;
   }
-  .navigation__icon-menu_opened-menu{
-    visibility: hidden;
-  }
 }
 
 @media (max-width : 320px) {
   .navigation__button_opened-menu{
     margin-left: 16px;
   }
-  .navigation__button_auth{
+  .navigation__button_auth_opened-menu{
+    margin-left: 16px;
     margin-right: 16px;
     width: calc(100% - 32px);
-  }
-  .navigation__icon-menu_hidden {
-    visibility: hidden;
   }
 }

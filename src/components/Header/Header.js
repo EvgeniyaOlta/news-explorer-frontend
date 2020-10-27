@@ -8,8 +8,8 @@ function Header(props) {
 
 
   return (
-    <div className="header" style={{ borderBottomColor: `${mainPage || props.isMiniMenuOpen ? 'rgba(255,255,255)' : 'rgba(0,0,0)'}`}}>
-      <h1 className="header__title" style={{ color: `${mainPage || props.isMiniMenuOpen ? 'white' : 'black'}` }}>NewsExplorer</h1>
+    <div className="header" style={{ outline: `${mainPage || props.isMenuOpen ? '1px solid white' : '1px solid black'}`}}>
+      <h1 className="header__title" style={{ color: `${mainPage || props.isMenuOpen ? 'white' : 'black'}` }}>NewsExplorer</h1>
       <Navigation
       handleLoginPopupClick={props.handleLoginPopupClick}
       mainPageChange={props.mainPageChange}

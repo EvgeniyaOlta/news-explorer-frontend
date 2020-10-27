@@ -23,14 +23,16 @@ function Navigation(props) {
       activeClassName="navigation__button_active-saved" style={{ color: `${mainPage || props.isMenuOpen ? 'white' : 'black'}`}} 
       onClick={props.savedPageChange} >Сохраненные статьи</NavLink>
       {mainPage && (
-        <button className={`navigation__button navigation__button_auth ${props.isMenuOpen && "navigation__button_opened-menu navigation__button_auth_opened-menu"}`} onClick={props.handleLoginPopupClick} style={{ color: `${mainPage ? 'white' : 'black'}`}} >Авторизоваться</button>
+        <button className={`navigation__button navigation__button_auth ${props.isMenuOpen && "navigation__button_auth_opened-menu"}`} 
+        onClick={props.handleLoginPopupClick} style={{ color: `${mainPage ? 'white' : 'black'}`}} >Авторизоваться</button>
       )}
       {mainPage === false && (
-        <button style={{ color: `${mainPage || props.isMenuOpen ? 'white' : 'black'}`,  borderBottomColor: `${mainPage || props.isMenuOpen ? 'rgba(255,255,255)' : 'rgba(0,0,0)'}`}} className={`navigation__button navigation__button_auth ${props.isMenuOpen && "navigation__button_opened-menu"}`} >Грета <div className="navigation__exite-icon"></div></button>
+        <button style={{ color: `${mainPage || props.isMenuOpen ? 'white' : 'black'}`,  borderBottomColor: `${mainPage || props.isMenuOpen ? 'rgba(255,255,255)' : 'rgba(0,0,0)'}`}} 
+        className={`navigation__button navigation__button_auth ${props.isMenuOpen && "navigation__button_auth_opened-menu"}`} >Грета <div className="navigation__exite-icon"></div></button>
       )}
        <button className={`navigation__icon-menu ${props.isMenuOpen && "navigation__icon-menu_opened-menu"} ${props.isLoginPopupOpen || props.isRegisterPopupOpen ? "navigation__icon-menu_hidden" : ""}`}  style={{ backgroundImage: `url(${mainPage ? menuWhite : menuBlack })` }} onClick={props.openMenu}></button>
       
-      <button className={`navigation__close-button ${props.isMenuOpen && "navigation__close-button_opened-menu"}`}   onClick={props.closeMenu}></button>
+      <button className={`navigation__close-button ${props.isMenuOpen && "navigation__close-button_opened-menu"}`} onClick={props.closeMenu}></button>
     </section>
   )
 };
