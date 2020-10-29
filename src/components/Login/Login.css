@@ -1,0 +1,119 @@
+.popup__label{
+  display: flex;
+  flex-direction: column;
+  font-family: Inter, Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #2F71E5;
+}
+
+.popup__input{
+  font-family: Inter, Arial;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  height: auto;
+  margin: 0px;
+  padding: 0px;
+  padding-top: 9px;
+  padding-bottom: 10px;
+  border-style: none;
+  border-bottom: 1px rgba(0,0,0,0.2) solid;
+}
+
+.popup__input::placeholder {
+  font-family: Inter, Arial;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  opacity: 0.2;;
+}
+.popup__input-error{
+  margin-top: 3px;
+  font-family: Inter, Arial;
+  font-weight: 400;
+  font-size: 12px;
+  height: 15px;
+  border-style: none;
+  color: #FF0000;
+  opacity: 0;
+  margin-bottom: 15px;
+}
+
+.popup__input-error:last-of-type{
+  margin-bottom: 25px;  
+}
+
+.popup__input-error_active{
+  opacity: 1;
+}
+
+.popup__save-button {
+  height: 64px;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+  font-family: Roboto, Arial;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  background-color: #E6E8EB;
+  color: #B6BCBF;
+  position: relative;
+  border-style: none;
+  border-radius: 100px;
+  outline: none; 
+  justify-self: end;
+}
+  
+.popup__save-button_active {
+  background-color: #2F71E5;
+  color: white;
+}
+
+.popup__save-button:hover {
+  opacity:0.8;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  top: 1px;
+}
+  
+.popup__save-button:focus {
+  outline:none;
+}
+
+.popup__link-line{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 16px;
+  margin-bottom: 28px;
+  font-family: Inter, Arial;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.popup__link{
+  border-style: none;
+  outline: none; 
+  background-color: transparent;
+  color: #2F71E5;
+}
+
+.popup__link:hover{
+  opacity:0.8;
+  cursor: pointer;
+}
+
+@media (max-width : 500px) {
+  .popup__input-error:last-of-type{
+    margin-bottom: 10px;  
+  }
+}

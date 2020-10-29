@@ -1,0 +1,244 @@
+.news-card{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.news-card:hover {
+  cursor: pointer;
+}
+
+.news-card__image{
+  width: 100%;
+  height: 272px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.news-card__button{
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+  border-style: none;
+  outline: none;
+  background-size: cover;
+  background-color: transparent;
+}
+
+.news-card__button:hover {
+  cursor: pointer;
+}
+
+.news-card__button_saved{
+  background-image: url(../../images/saved.svg);
+}
+.news-card__button_not-saved{
+  background-image: url(../../images/save.svg);
+}
+.news-card__button_not-saved:hover {
+  background-image: url(../../images/save-hover.svg);
+}
+
+.news-card__keyword{
+  display: flex;
+  font-family: Roboto, Arial;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  font-style: normal;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: auto;
+  max-width: 110px;
+  height: 40px;
+  z-index: 1;
+  margin: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  align-items: center;
+  background-color: white;
+  border-style: none;
+  border-radius: 10px;
+}
+
+.news-card__remove-info-span{
+  display: flex;
+  visibility: hidden;
+  font-family: Roboto, Arial;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  font-style: normal;
+  position: absolute;
+  top: 24px;
+  right: 69px;
+  width: auto;
+  height: 40px;
+  z-index: 1;
+  margin: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  align-items: center;
+  background-color: white;
+  border-style: none;
+  border-radius: 10px;
+}
+
+.news-card__save-info-span{
+  display: flex;
+  visibility: hidden;
+  font-family: Roboto, Arial;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  font-style: normal;
+  position: absolute;
+  top: 24px;
+  right: 69px;
+  width: auto;
+  height: 40px;
+  z-index: 1;
+  margin: 0px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: center;
+  align-items: center;
+  background-color: white;
+  border-style: none;
+  border-radius: 10px;
+}
+
+.news-card__info{
+  margin: 0px;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.news-card__date{
+  font-family: Sourcesanspro, Arial;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  font-style: normal;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  color: #B6BCBF;
+}
+
+.news-card__title{
+  font-family: Robotoslab, Arial;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  font-style: normal;
+  margin-bottom: 16px;
+  color: #1A1B22;
+}
+
+.news-card__text{
+  font-family: Roboto, Arial;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  font-style: normal;
+  margin-bottom: 18px;
+  color: #1A1B22;
+}
+
+.news-card__source{
+  font-family: Robotoslab, Arial;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  font-style: normal;
+  color: #B6BCBF;
+  margin-bottom: 24px;
+}
+
+@media (max-width : 768px) {
+  .news-card__button{
+    top: 8px;
+    right: 8px;
+  }
+  .news-card__keyword{
+    top: 8px;
+    left: 8px;
+  }
+  .news-card__remove-info-span{
+    top: 8px;
+    right: 58px;
+  }
+  .news-card__save-info-span{
+    top: 8px;
+    right: 58px;
+  }
+  .news-card__image{
+    height: 150px;
+  }
+  .news-card__info{
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .news-card__date{
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+  .news-card__title{
+    font-size: 22px;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+  .news-card__text{
+    margin-bottom: 12px;
+  }
+  .news-card__source{
+    line-height: 20px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width : 320px) {
+  .news-card__button{
+    top: 16px;
+    right: 16px;
+  }
+  .news-card__keyword{
+    top: 16px;
+    left: 16px;
+  }
+  .news-card__remove-info-span{
+    top: 16px;
+    right: 58px;
+  }
+  .news-card__save-info-span{
+    top: 16px;
+    right: 58px;
+  }
+  .news-card__image{
+    height: 196px;
+  }
+  .news-card__date{
+    margin-bottom: 10px;
+  }
+  .news-card__title{
+    font-size: 26px;
+    line-height: 30px;
+  }
+  .news-card__text{
+    margin-bottom: 8px;
+  }
+  .news-card__source{
+    line-height: 22px;
+    margin-bottom: 16px;
+  }
+}

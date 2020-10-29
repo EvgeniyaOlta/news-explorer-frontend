@@ -1,0 +1,7 @@
+.saved-news{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  margin-top: -80px
+} 

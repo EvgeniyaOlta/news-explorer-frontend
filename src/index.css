@@ -1,0 +1,12 @@
+@import url(./vendor/normalize.css);
+@import url(./fonts/fonts.css);
+
+.root {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Inter', Arial;
+  font-style: normal;
+  background-color: white;
+  color:black;
+  position: relative;
+}

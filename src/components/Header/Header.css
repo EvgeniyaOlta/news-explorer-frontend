@@ -1,0 +1,49 @@
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  top: 0px;
+  left: 0px;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.header__title{
+  font-family: Robotoslab, Arial;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  font-style: normal;
+  padding-bottom: 26px;
+  margin: 0px;
+  padding-left: 104px;
+}
+
+@media (max-width : 768px) {
+  .header {
+    padding-top: 21px;
+  }
+  .header__title{
+    padding-bottom: 19px;
+    padding-left: 40px;
+  }
+}
+
+@media (max-width : 500px) {
+  .header {
+    padding-top: 16px;
+  }
+  .header__title{
+    padding-bottom: 16px;
+  }
+}
+
+@media (max-width : 320px) {
+  .header__title{
+    padding-left: 16px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

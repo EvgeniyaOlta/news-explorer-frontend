@@ -1,0 +1,99 @@
+.about{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 7vw;
+  padding-right: 14vw;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.about__avatar{
+  width: 32vw;
+  height: 32vw;
+  background-image: url(../../images/avatar.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0px;
+  margin-right: 4vw;
+}
+
+.about__text{
+  width: 41vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.about__title{
+  font-family: Roboto, Arial;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  font-style: normal;
+  margin: 0px;
+  margin-top: 50px;
+  margin-bottom: 24px;
+}
+
+.about__description{
+  margin: 0px;
+  height: auto;
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  font-style: normal;
+}
+
+@media (max-width : 1000px) {
+  .about__title{
+    margin-top: 0px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width : 768px) {
+  .about{
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 40px;
+    padding-bottom: 72px;
+  }
+  .about__avatar{
+    width: 30.5vw;
+    height: 30.5vw;
+    margin-right: 7vw;
+  }
+  .about__text{
+    width: 50vw;
+  }
+  .about__title{
+    margin-top: 0px;
+    margin-bottom: 16px;
+    font-size: 30px;
+    line-height: 40px;
+  }
+} 
+
+@media (max-width : 450px) {
+  .about{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 32px;
+    padding-bottom: 24px;
+    flex-direction: column;
+  }
+  .about__avatar{
+    width: 85vw;
+    height: 85vw;
+    margin-right: 0px;
+    margin-bottom: 24px;
+  }
+  .about__title{
+    margin-top: 0px;
+  }
+  .about__text{
+    width: auto;
+  }
+} 

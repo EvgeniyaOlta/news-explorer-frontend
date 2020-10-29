@@ -1,0 +1,57 @@
+.not-found{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  background-color: #F5F6F7;
+  padding-top: 86px;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.not-found__image{
+  margin: 0px;
+  margin-bottom: 31px;
+  background-image: url(../../images/sadface.png);
+  background-size: contain;
+  width: 96px;
+  height: 96px;
+}
+
+.not-found__title{
+  font-family: Robotoslab, Arial;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  font-style: normal;
+  text-align: center;
+  color: #1A1B22;
+  margin: 0px;
+  margin-bottom: 16px;
+}
+
+.not-found__info-line{
+  font-family: Roboto, Arial;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  font-style: normal;
+  color: #B6BCBF;
+  width: 365px;
+  text-align: center;
+  margin: 0px;
+}
+
+@media (max-width : 400px) {
+  .not-found__title{
+    width: 80vw;
+  }
+  .not-found__info-line{
+    width: 80vw;
+  }
+  .not-found{
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
