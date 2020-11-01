@@ -20,12 +20,16 @@ function Main(props) {
       <Login
       isOpen={props.isLoginPopupOpen}
       closePopup={props.closeAllPopups} 
-      openRegister={props.handleRegisterPopupClick}/>
+      openRegister={props.handleRegisterPopupClick}
+      changeUserName={props.changeUserName}
+      handleLogin={props.handleLogin}/>
       <Register 
       isOpen={props.isRegisterPopupOpen}
       closePopup={props.closeAllPopups}
       openLogin={props.handleLoginPopupClick}
       openInfoTooltip={props.handleInfoTooltipClick}
+      handleLogin={props.handleLogin}
+      changeUserName={props.changeUserName}
       />
       <InfoTooltip 
       isOpen={props.isInfoTooltipOkOpen}

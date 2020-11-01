@@ -4,14 +4,30 @@ import './NewsCardList.css';
 
 
 function NewsCardList(props) {
-  console.log(props.array);
+  const array = Array.from(props.array);
+
+  let cardsAmount = array.length;
+  const [usingCards, setUsingCards] = React.useState(3);
+  let rest = cardsAmount - usingCards;
+  
+  let newArray = array.slice(0, usingCards)
+  
+  function showMoreCards() {
+    setUsingCards(usingCards + 3);
+  }
 
   return (
-    <div className="news-card-list">
-      {Array.from(props.array).map(article =>
-        <NewsCard articleData ={article} key = {article._id} />
-      )}  
-    </div>
+    <section className="news-card-list"> 
+      <div className="news-card-list__list">
+        {newArray.map(article =>
+          <NewsCard articleData ={article} key = {article._id} />
+        )}  
+      </div>
+      {cardsAmount > 3 && rest > 0 && (
+        <button className="news-card-list__button" onClick={showMoreCards}>Показать ещë</button>
+      )}
+      
+    </section>
   )
 };
 

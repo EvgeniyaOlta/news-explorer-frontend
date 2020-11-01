@@ -11,7 +11,6 @@ function SearchResult() {
     <div className="search-result"> 
       <h2 className="search-result__title">Результаты поиска</h2>
       <NewsCardList array={SearchArray}></NewsCardList>
-      <button className="search-result__button">Показать ещë</button>
     </div>
   )
 };
