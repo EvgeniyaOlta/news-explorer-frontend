@@ -86,6 +86,20 @@
   border-style: none;
 }
 
+.search-form__input-error {
+  position: absolute;
+  bottom: 8px;
+  left: 24px;
+  font-size: 10px;
+  line-height: 14px;
+  font-style: normal;
+  color: #347EFF;
+  opacity: 0;
+}
+.search-form__input-error_active{
+  opacity: 1;
+}
+
 .search-form__button:hover {
   cursor: pointer;
   background-color: #347EFF;
@@ -167,6 +181,12 @@
     margin-bottom: 16px;
     padding-left: 16px;
     padding-right: 16px;
+  }
+  .search-form__input-error {
+    top: 38px;
+    left: 16px;
+    font-size: 8px;
+    line-height: 12px;
   }
   .search-form__button{
     width: auto;

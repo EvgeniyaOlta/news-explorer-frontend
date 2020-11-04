@@ -1,40 +1,11 @@
-export class MainApi {
+class MainApi {
   constructor(data) {
     this._baseUrl = data.baseUrl
     this._authorizationNumber = data.authorizationNumber
   }
-  getUserInfo() {
-    return fetch(`${this._baseUrl}/users/me`, {headers: {
-      authorization: this._authorizationNumber
-      }
-    })
-    .then(this._returnErrorResponse)
-  }
 
-  getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {headers: {
-      authorization: this._authorizationNumber
-      }
-    })
-    .then(this._returnErrorResponse)
-  }
-  
-  patchUserInfo(newUserName, newUserDescription) {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'PATCH',
-      headers: {
-        authorization: this._authorizationNumber,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: newUserName,
-        about: newUserDescription
-      })
-    })
-    .then(this._returnErrorResponse)
-  }
-  
   postNewCard (newCardName, newCardLink) {
+    console.log(newCardLink)
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: {
@@ -49,41 +20,8 @@ export class MainApi {
   .then(this._returnErrorResponse)
   }
 
-  patchAvatar(avatarLink) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: {
-        authorization: this._authorizationNumber,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        avatar: avatarLink
-      })
-    })
-    .then(this._returnErrorResponse)
-  }
-
-  putLike (cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: 'PUT',
-      headers: {
-        authorization: this._authorizationNumber
-        }
-    })
-  .then(this._returnErrorResponse)
-  }
-
-  deleteLike (cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: 'DELETE',
-      headers: {
-        authorization: this._authorizationNumber
-        }
-    })
-  .then(this._returnErrorResponse)
-  }
-
   deleteCard (cardId) {
+    console.log(`${this._baseUrl}/cards/${cardId}`)
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
@@ -100,3 +38,8 @@ export class MainApi {
       return Promise.reject(`Ошибка: ${res.status}`);
   }
 }
+
+export const mainApi = new MainApi({
+  baseUrl: 'https://news-olta.students.nomoreparties.co',
+  authorizationNumber: '700729c8-6f90-4ed7-bfdf-eebcd18bcb3c'
+});

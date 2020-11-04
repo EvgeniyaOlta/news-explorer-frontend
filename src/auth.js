@@ -1,12 +1,12 @@
 export const BASE_URL = 'https://news-olta.students.nomoreparties.co';
 
-export const register = (email, password, name) => {
+export const register = (userEmail, userPassword, UserName) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ email, password, name })
+    body: JSON.stringify({ email: userEmail, password: userPassword, name: UserName})
   })
   .then(res => res.ok ? res : Promise.reject(res)) 
   .then((res) => { 

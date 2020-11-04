@@ -11,7 +11,7 @@ function NewsCardList(props) {
   let rest = cardsAmount - usingCards;
   
   let newArray = array.slice(0, usingCards)
-  
+
   function showMoreCards() {
     setUsingCards(usingCards + 3);
   }
@@ -19,8 +19,11 @@ function NewsCardList(props) {
   return (
     <section className="news-card-list"> 
       <div className="news-card-list__list">
-        {newArray.map(article =>
-          <NewsCard articleData ={article} key = {article._id} />
+        {newArray.map((article, index) =>
+          <NewsCard 
+          article ={article} 
+          key ={index} 
+          loggedIn={props.loggedIn}/>
         )}  
       </div>
       {cardsAmount > 3 && rest > 0 && (

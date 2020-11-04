@@ -4,10 +4,10 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews'
 import './App.css';
-import { MainPageContext } from '../context/MainPageContext.js';
+import { MainPageContext } from '../../context/MainPageContext.js';
+import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import * as auth from '../../auth.js';
-import { CurrentUserContext } from '../context/CurrentUserContext.js';
 //import MainApi from '../utils/MainApi';
 
 function App() {
@@ -41,20 +41,18 @@ function App() {
   } 
   
   function handleLoginPopupClick(e) {
-    e.preventDefault();
     closeAllPopups();
     closeMenu();
     setIsLoginPopupOpen(true);
   }
   
   function handleRegisterPopupClick(e) {
-    e.preventDefault();
+    //e.preventDefault();
     closeAllPopups();
     setIsRegisterPopupOpen(true);
   }
 
   function handleInfoTooltipClick(e) {
-    e.preventDefault();
     closeAllPopups();
     setIsInfoTooltipOkOpen(true);
   }
@@ -77,13 +75,16 @@ function App() {
   function changeUserName(name){
     setUserName(name) 
   };
+
   function handleLogin(){
-    setLoggedIn(true) 
+    console.log('что за фигня')
+    
   };
   
   function handleLogout(){
     setLoggedIn(false) 
   };
+
   React.useEffect(() => {
     tokenCheck ()
   }, []);
@@ -116,7 +117,10 @@ function App() {
       savedPageChange={savedPageChange}
       isInfoTooltipOkOpen={isInfoTooltipOkOpen}
       isLoginPopupOpen={isLoginPopupOpen}
-      isRegisterPopupOpen={isRegisterPopupOpen}/>
+      isRegisterPopupOpen={isRegisterPopupOpen}
+      loggedIn={loggedIn}
+      handleLogout={handleLogout}
+      setLoggedIn={setLoggedIn}/>
       
         <Switch>
           <Route exact path="/"> 
@@ -129,7 +133,9 @@ function App() {
             handleInfoTooltipClick={handleInfoTooltipClick}
             closeAllPopups={closeAllPopups}
             changeUserName={changeUserName}
-            handleLogin={handleLogin} />
+            handleLogin={handleLogin} 
+            loggedIn={loggedIn}
+            setCurrentUser={setCurrentUser} />
           </Route>
           <Route path="/saved-news">
             <SavedNews />

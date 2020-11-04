@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
-import { MainPageContext } from '../context/MainPageContext.js';
+import { MainPageContext } from '../../context/MainPageContext.js';
 
 function Header(props) {
   const mainPage = React.useContext(MainPageContext);
@@ -19,6 +19,8 @@ function Header(props) {
       openMenu={props.openMenu}
       isLoginPopupOpen={props.isLoginPopupOpen}
       isRegisterPopupOpen={props.isRegisterPopupOpen}
+      loggedIn={props.loggedIn}
+      handleLogout={props.handleLogout}
       />
     </div>
   )
