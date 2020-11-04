@@ -21,8 +21,8 @@ class MainApi {
   }
 
   deleteCard (cardId) {
-    console.log(`${this._baseUrl}/cards/${cardId}`)
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    console.log(`${this._baseUrl}/articles/${cardId}`)
+    return fetch(`${this._baseUrl}/articles/${cardId}`, {
       method: 'DELETE',
       headers: {
         authorization: this._authorizationNumber

@@ -47,12 +47,13 @@ function App() {
   }
   
   function handleRegisterPopupClick(e) {
-    //e.preventDefault();
+    e.preventDefault();
     closeAllPopups();
     setIsRegisterPopupOpen(true);
   }
 
   function handleInfoTooltipClick(e) {
+    e.preventDefault();
     closeAllPopups();
     setIsInfoTooltipOkOpen(true);
   }
