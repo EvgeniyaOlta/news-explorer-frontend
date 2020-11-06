@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -6,7 +7,6 @@ import SavedNews from '../SavedNews/SavedNews'
 import './App.css';
 import { MainPageContext } from '../../context/MainPageContext.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
-import { Route, Switch, useHistory } from 'react-router-dom';
 import * as auth from '../../auth.js';
 import mainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
@@ -18,24 +18,42 @@ function App() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const history = useHistory();
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState(null);
   const [savedNewsArray, setSavedNewsArray] = React.useState('');
   const [searchResultArray, setSearchResultArray] = React.useState('');
   const [redirect, setRedirect] = React.useState(false);
+  const [searchInput, setSearchInput] = React.useState('');
 
   React.useEffect(() => {
+    if (!loggedIn){
+      setCurrentUser(null)
+    }
+    else{ 
     mainApi.getUserInfo()
     .then((userInfoData) => {
       setCurrentUser(userInfoData.data);
-      console.log(currentUser);
     })
     .catch(() => {
       console.error('Что-то пошло не так.');
     });
+    }
   }, [loggedIn]);
 
+  React.useEffect(() => {
+    if (!loggedIn){
+      setSavedNewsArray('');
+    }
+    else{mainApi.getInitialCards()
+      .then(cardsInfoData => {
+        setSavedNewsArray(cardsInfoData.data);
+      })
+      .catch(() => {
+        console.error('Что-то пошло не так.');
+      }); 
+    }
+  }, [loggedIn]);
+  
   function openMenu() {
     setIsMenuOpen(true);
   }
@@ -62,11 +80,11 @@ function App() {
   }
 
   function closeAllPopups() {
+    setRedirect(false)
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
     setIsInfoTooltipOkOpen(false);
     setIsMenuOpen(false);
-    console.log(isMenuOpen)
   }
 
   function mainPageChange () {
@@ -93,7 +111,6 @@ function App() {
     const jwt = localStorage.getItem('jwt');
     if (jwt){
       auth.getContent(jwt).then((res) => {
-        console.log(res.data)
         if (res.data){
           setLoggedIn(true);
         }
@@ -101,19 +118,6 @@ function App() {
       .catch(err => console.log(err));
     }
   }
-
-//  React.useEffect(() => {
-  
-//      mainApi.getInitialCards()
-//      .then(cardsInfoData => {
-//      //console.log(cardsInfoData.data)
-//      //setSavedNewsArray(cardsInfoData.data);
-//        setSavedNewsArray(cardsInfoData.data);
-//      })
-//      .catch(() => {
-//       console.error('Что-то пошло не так.');
-//      }); 
-//  }, [loggedIn]);
 
   return (
     <div className="root">
@@ -132,7 +136,8 @@ function App() {
       loggedIn={loggedIn}
       handleLogout={handleLogout}
       setLoggedIn={setLoggedIn}
-      setCurrentUser={setCurrentUser}/>
+      setCurrentUser={setCurrentUser}
+      />
       
         <Switch>
           <Route exact path="/"> 
@@ -150,7 +155,11 @@ function App() {
             setSavedNewsArray={setSavedNewsArray}
             savedNewsArray={savedNewsArray}
             searchResultArray={searchResultArray}
-            setSearchResultArray={setSearchResultArray} />
+            setSearchResultArray={setSearchResultArray} 
+            setRedirect={setRedirect}
+            redirect={redirect}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}/>
           </Route>
           <ProtectedRoute 
           exact path="/saved-news" 
@@ -158,7 +167,8 @@ function App() {
           component={SavedNews} 
           savedNewsArray={savedNewsArray} 
           setSearchResultArray={setSearchResultArray}
-          handleLogin={handleLogin} />
+          handleLogin={handleLogin}
+          setRedirect={setRedirect} />
         </Switch>
       <Footer mainPageChange={mainPageChange}/>
       </CurrentUserContext.Provider>

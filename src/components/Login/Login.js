@@ -88,7 +88,6 @@ function Login(props) {
     }
   }
 
-
   function handleSubmit (e) {
     e.preventDefault();
     if (!email || !password){
@@ -99,9 +98,8 @@ function Login(props) {
         setEmail('');
         setPassword('');
         props.setCurrentUser(data);
-        props.handleLogin();
         props.closePopup();
-        console.log(currentUser)
+        props.handleLogin();
       } else {
         console.log('error')
       }

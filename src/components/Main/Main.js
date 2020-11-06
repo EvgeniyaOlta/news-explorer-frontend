@@ -14,8 +14,18 @@ function Main(props) {
   const [preloaderActive, setPreloaderActive] = React.useState(false);
   const [notFoundActive, setNotFoundActive] = React.useState(false);
   const [searchError, setSearchError] = React.useState(false);
-  const [searchInput, setSearchInput] = React.useState('');
+
+  //const searchResultArray = JSON.parse(localStorage.getItem('searchResultArray'));
   const [pageName, setPageName] = React.useState('main');
+  
+
+  function checkRedirect() {
+    if (props.redirect){
+      props.handleLoginPopupClick()
+    }
+    else{console.log('wow')}
+  }
+  checkRedirect();
 
   return (
     <main className="main">
@@ -24,8 +34,9 @@ function Main(props) {
       setPreloaderActive={setPreloaderActive} 
       setNotFoundActive={setNotFoundActive}
       setSearchError={setSearchError}
-      searchInput={searchInput}
-      setSearchInput={setSearchInput}/>
+      searchInput={props.searchInput}
+      setSearchInput={props.setSearchInput}
+      setPageName={setPageName}/>
       {preloaderActive && 
       <Preloader />
       }
@@ -39,7 +50,7 @@ function Main(props) {
       loggedIn={props.loggedIn}
       setSavedNewsArray={props.setSavedNewsArray}
       savedNewsArray={props.savedNewsArray}
-      searchInput={searchInput}
+      searchInput={props.searchInput}
       pageName={pageName}/>
       }
       <About />

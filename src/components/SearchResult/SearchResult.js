@@ -5,16 +5,17 @@ import './SearchResult.css';
 
 
 function SearchResult(props) {
-
+  const searchResultArray = JSON.parse(localStorage.getItem('searchResultArray'));
   return (
     <div className="search-result"> 
       <h2 className="search-result__title">Результаты поиска</h2>
       <NewsCardList 
-      array={props.searchResultArray} 
+      array={searchResultArray} 
       searchError={props.searchError}
       loggedIn={props.loggedIn}
       setSavedNewsArray={props.setSavedNewsArray}
       savedNewsArray={props.savedNewsArray}
+      searchResultArray={props.searchResultArray}
       searchInput={props.searchInput}
       pageName={props.pageName}></NewsCardList>
       {props.searchError && (

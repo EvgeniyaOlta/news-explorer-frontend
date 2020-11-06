@@ -3,7 +3,6 @@ import './SearchForm.css';
 import {newsApi} from '../../utils/NewsApi.js';
 
 function SearchForm(props) {
-  
   const [searchInputError, setSearchInputError] = React.useState({
     classError: '',
     errorMessage: '',
@@ -55,6 +54,7 @@ function SearchForm(props) {
       const currentDate = `${year}-${month + 1}-${day}`
     
       const from = date.setDate(date.getDate() - 7);
+      console.log(from)
       const fromYear = date.getFullYear();
       const fromMonth = date.getMonth();
       const fromDay = date.getDate();

@@ -4,6 +4,7 @@ import './NewsCardList.css';
 
 
 function NewsCardList(props) {
+
   const array = Array.from(props.array);
 
   let cardsAmount = array.length;
@@ -15,7 +16,7 @@ function NewsCardList(props) {
   function showMoreCards() {
     setUsingCards(usingCards + 3);
   }
-
+  
   return (
     <section className="news-card-list"> 
       <div className="news-card-list__list">
@@ -26,6 +27,7 @@ function NewsCardList(props) {
           loggedIn={props.loggedIn}
           setSavedNewsArray={props.setSavedNewsArray}
           savedNewsArray={props.savedNewsArray}
+          searchResultArray={props.searchResultArray}
           searchInput={props.searchInput}
           pageName={props.pageName}/>
         )}  
