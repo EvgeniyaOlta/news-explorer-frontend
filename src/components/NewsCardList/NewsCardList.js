@@ -23,7 +23,11 @@ function NewsCardList(props) {
           <NewsCard 
           article ={article} 
           key ={index} 
-          loggedIn={props.loggedIn}/>
+          loggedIn={props.loggedIn}
+          setSavedNewsArray={props.setSavedNewsArray}
+          savedNewsArray={props.savedNewsArray}
+          searchInput={props.searchInput}
+          pageName={props.pageName}/>
         )}  
       </div>
       {cardsAmount > 3 && rest > 0 && (

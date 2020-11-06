@@ -3,7 +3,7 @@ import './SearchForm.css';
 import {newsApi} from '../../utils/NewsApi.js';
 
 function SearchForm(props) {
-  const [searchInput, setSearchInput] = React.useState('');
+  
   const [searchInputError, setSearchInputError] = React.useState({
     classError: '',
     errorMessage: '',
@@ -16,12 +16,12 @@ function SearchForm(props) {
       classError: '',
       errorMessage: '',
     });
-    setSearchInput('');
+    props.setSearchInput('');
     setIsSearchInputValid(false);
   }, []);
 
   function handleSearchInputChange(e) {
-    setSearchInput(e.target.value);
+    props.setSearchInput(e.target.value);
 
     if (!e.target.validity.valid) {
       setIsSearchInputValid(false);
@@ -43,7 +43,7 @@ function SearchForm(props) {
         classError: '',
         errorMessage: '',
       });
-      props.setSearchResultData('')
+      props.setSearchResultArray('')
       props.setNotFoundActive(false);
       props.setSearchError(false)
       props.setPreloaderActive(true);
@@ -62,13 +62,13 @@ function SearchForm(props) {
       
       localStorage.setItem('user', JSON.stringify());
 
-      newsApi.getRequest(searchInput, currentDate, weekAgoDate)
+      newsApi.getRequest(props.searchInput, currentDate, weekAgoDate)
         .then((data) => {
           if (data.articles.length === 0) {
             props.setNotFoundActive(true)
             } else { 
-            props.setSearchResultData(data.articles);
-            localStorage.setItem('searchResultData', JSON.stringify(data.articles));
+            props.setSearchResultArray(data.articles);
+            localStorage.setItem('searchResultArray', JSON.stringify(data.articles));
             }
         })
         .catch(() => {

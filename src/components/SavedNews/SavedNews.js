@@ -1,20 +1,28 @@
 import React from 'react';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NewsCardList from '../NewsCardList/NewsCardList';
-import articlesArray from '../../utils/constants';
 import './SavedNews.css';
+import mainApi from '../../utils/MainApi'
 
-function SavedNews() {
-  function isSaved(article) {
-    return article.save === true;
-  }
+function SavedNews(props) {
+  const [pageName, setPageName] = React.useState('saved-news');
+
+  React.useEffect(() => {
   
-  let SavedNewsArray = Array.from(articlesArray).filter(isSaved);
+    mainApi.getInitialCards()
+    .then(cardsInfoData => {
+      console.log('sdsd', cardsInfoData.data)
+      props.setSavedNewsArray(cardsInfoData.data);
+    })
+    .catch(() => {
+     console.error('Что-то пошло не так.');
+    });
+  }, []);
 
   return (
     <section className="saved-news">
-      <SavedNewsHeader array={SavedNewsArray}/>
-      <NewsCardList array={SavedNewsArray}></NewsCardList>
+      <SavedNewsHeader array={props.savedNewsArray}/>
+      <NewsCardList array={props.savedNewsArray} pageName={pageName}></NewsCardList>
     </section>
   )
 };

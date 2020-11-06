@@ -1,31 +1,54 @@
+const jwt = localStorage.getItem('jwt')
+
 class MainApi {
   constructor(data) {
-    this._baseUrl = data.baseUrl
-    this._authorizationNumber = data.authorizationNumber
+    this._baseUrl = data.baseUrl;
+    this._token = data.token;
+  }
+  
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {headers: {
+      authorization: `Bearer ${this._token}`
+      }
+    })
+    .then(this._returnErrorResponse)
   }
 
-  postNewCard (newCardName, newCardLink) {
-    console.log(newCardLink)
-    return fetch(`${this._baseUrl}/cards`, {
+  postNewCard (articleKeyword, articleTitle, articleText, articleDate, articleSource, articleLink, articleImage) {
+    console.log('')
+    return fetch(`${this._baseUrl}/articles`, {
       method: 'POST',
       headers: {
-        authorization: this._authorizationNumber,
+        authorization: `Bearer ${this._token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: newCardName,
-        link: newCardLink
+        keyword: articleKeyword,
+        title: articleTitle,
+        text: articleText,
+        date: articleDate,
+        source: articleSource,
+        link: articleLink,
+        image: articleImage
       })
     })
   .then(this._returnErrorResponse)
   }
 
-  deleteCard (cardId) {
-    console.log(`${this._baseUrl}/articles/${cardId}`)
-    return fetch(`${this._baseUrl}/articles/${cardId}`, {
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/articles`, {headers: {
+      authorization: `Bearer ${this._token}`
+      }
+    })
+    .then(this._returnErrorResponse)
+  }
+
+  deleteCard (articleId) {
+    console.log(`${this._baseUrl}/articles/${articleId}`)
+    return fetch(`${this._baseUrl}/articles/${articleId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._authorizationNumber
+        authorization: `Bearer ${this._token}`
         }
     })
   .then(this._returnErrorResponse)
@@ -39,7 +62,9 @@ class MainApi {
   }
 }
 
-export const mainApi = new MainApi({
+const mainApi = new MainApi({
   baseUrl: 'https://news-olta.students.nomoreparties.co',
-  authorizationNumber: '700729c8-6f90-4ed7-bfdf-eebcd18bcb3c'
+  token: jwt,
 });
+
+export default mainApi;

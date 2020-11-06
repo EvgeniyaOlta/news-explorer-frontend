@@ -8,7 +8,8 @@ import { MainPageContext } from '../../context/MainPageContext.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import * as auth from '../../auth.js';
-//import MainApi from '../utils/MainApi';
+import mainApi from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
 
 function App() {
   const [mainPage, setMainPage] = React.useState(true);
@@ -18,20 +19,22 @@ function App() {
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const history = useHistory();
-  const [userName, setUserName] = React.useState('');
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState(null);
-  //const [userPassword, setUserPassword] = React.useState('');
+  const [savedNewsArray, setSavedNewsArray] = React.useState('');
+  const [searchResultArray, setSearchResultArray] = React.useState('');
+  const [redirect, setRedirect] = React.useState(false);
 
-  //React.useEffect(() => {
-  //  MainApi.getUserInfo()
-  //  .then((userInfoData) => {
-  //    setCurrentUser(userInfoData);
-  //  })
-  //.catch(() => {
-  //    console.error('Что-то пошло не так.');
-  //  });
-  //}, []);
+  React.useEffect(() => {
+    mainApi.getUserInfo()
+    .then((userInfoData) => {
+      setCurrentUser(userInfoData.data);
+      console.log(currentUser);
+    })
+    .catch(() => {
+      console.error('Что-то пошло не так.');
+    });
+  }, [loggedIn]);
 
   function openMenu() {
     setIsMenuOpen(true);
@@ -69,17 +72,13 @@ function App() {
   function mainPageChange () {
     setMainPage(true);
   }
+  
   function savedPageChange () {
     setMainPage(false);
   }
 
-  function changeUserName(name){
-    setUserName(name) 
-  };
-
   function handleLogin(){
-    console.log('что за фигня')
-    
+    setLoggedIn(true) 
   };
   
   function handleLogout(){
@@ -94,16 +93,27 @@ function App() {
     const jwt = localStorage.getItem('jwt');
     if (jwt){
       auth.getContent(jwt).then((res) => {
-        console.log(res)
+        console.log(res.data)
         if (res.data){
           setLoggedIn(true);
-          changeUserName(res.data.name);
-          history.push('/')
         }
       })
       .catch(err => console.log(err));
     }
   }
+
+//  React.useEffect(() => {
+  
+//      mainApi.getInitialCards()
+//      .then(cardsInfoData => {
+//      //console.log(cardsInfoData.data)
+//      //setSavedNewsArray(cardsInfoData.data);
+//        setSavedNewsArray(cardsInfoData.data);
+//      })
+//      .catch(() => {
+//       console.error('Что-то пошло не так.');
+//      }); 
+//  }, [loggedIn]);
 
   return (
     <div className="root">
@@ -121,7 +131,8 @@ function App() {
       isRegisterPopupOpen={isRegisterPopupOpen}
       loggedIn={loggedIn}
       handleLogout={handleLogout}
-      setLoggedIn={setLoggedIn}/>
+      setLoggedIn={setLoggedIn}
+      setCurrentUser={setCurrentUser}/>
       
         <Switch>
           <Route exact path="/"> 
@@ -133,14 +144,21 @@ function App() {
             handleRegisterPopupClick={handleRegisterPopupClick}
             handleInfoTooltipClick={handleInfoTooltipClick}
             closeAllPopups={closeAllPopups}
-            changeUserName={changeUserName}
             handleLogin={handleLogin} 
             loggedIn={loggedIn}
-            setCurrentUser={setCurrentUser} />
+            setCurrentUser={setCurrentUser}
+            setSavedNewsArray={setSavedNewsArray}
+            savedNewsArray={savedNewsArray}
+            searchResultArray={searchResultArray}
+            setSearchResultArray={setSearchResultArray} />
           </Route>
-          <Route path="/saved-news">
-            <SavedNews />
-          </Route>
+          <ProtectedRoute 
+          exact path="/saved-news" 
+          loggedIn={loggedIn} 
+          component={SavedNews} 
+          savedNewsArray={savedNewsArray} 
+          setSearchResultArray={setSearchResultArray}
+          handleLogin={handleLogin} />
         </Switch>
       <Footer mainPageChange={mainPageChange}/>
       </CurrentUserContext.Provider>

@@ -96,12 +96,10 @@ function Login(props) {
     }  
     auth.authorize(email, password).then((data) => {
       if (data){
-        console.log(data)
         setEmail('');
         setPassword('');
-        //props.setCurrentUser(data);
-        console.log(props.handleLogin);
-        props.hadleLogin();
+        props.setCurrentUser(data);
+        props.handleLogin();
         props.closePopup();
         console.log(currentUser)
       } else {

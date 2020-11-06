@@ -11,36 +11,42 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 
 function Main(props) {
-  const [searchResultData, setSearchResultData] = React.useState('');
   const [preloaderActive, setPreloaderActive] = React.useState(false);
   const [notFoundActive, setNotFoundActive] = React.useState(false);
   const [searchError, setSearchError] = React.useState(false);
+  const [searchInput, setSearchInput] = React.useState('');
+  const [pageName, setPageName] = React.useState('main');
 
   return (
     <main className="main">
       <SearchForm 
-      setSearchResultData={setSearchResultData} 
+      setSearchResultArray={props.setSearchResultArray} 
       setPreloaderActive={setPreloaderActive} 
       setNotFoundActive={setNotFoundActive}
-      setSearchError={setSearchError}/>
+      setSearchError={setSearchError}
+      searchInput={searchInput}
+      setSearchInput={setSearchInput}/>
       {preloaderActive && 
       <Preloader />
       }
       {notFoundActive && 
       <NotFound />
       }
-      {searchResultData !== '' &&
+      {props.searchResultArray !== '' &&
       <SearchResult 
-      searchResultData={searchResultData} 
+      searchResultArray={props.searchResultArray} 
       searchError={searchError} 
-      loggedIn={props.loggedIn}/>
+      loggedIn={props.loggedIn}
+      setSavedNewsArray={props.setSavedNewsArray}
+      savedNewsArray={props.savedNewsArray}
+      searchInput={searchInput}
+      pageName={pageName}/>
       }
       <About />
       <Login
       isOpen={props.isLoginPopupOpen}
       closePopup={props.closeAllPopups} 
       openRegister={props.handleRegisterPopupClick}
-      changeUserName={props.changeUserName}
       handleLogin={props.handleLogin}
       setCurrentUser={props.setCurrentUser}/>
       <Register 
@@ -49,7 +55,6 @@ function Main(props) {
       openLogin={props.handleLoginPopupClick}
       openInfoTooltip={props.handleInfoTooltipClick}
       handleLogin={props.handleLogin}
-      changeUserName={props.changeUserName}
       setLoggedIn={props.setLoggedIn}
       />
       <InfoTooltip 
