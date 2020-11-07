@@ -25,6 +25,7 @@ function App() {
   const [redirect, setRedirect] = React.useState(false);
   const [searchInput, setSearchInput] = React.useState('');
 
+
   React.useEffect(() => {
     if (!loggedIn){
       setCurrentUser(null)
@@ -54,6 +55,21 @@ function App() {
     }
   }, [loggedIn, savedNewsArray]);
   
+  function tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt){
+      auth.getContent(jwt).then((res) => {
+        if (res.data){
+          setLoggedIn(true);
+        }
+      })
+      .catch(err => console.log(err));
+    }
+  }
+  React.useEffect(() => {
+    tokenCheck ()
+  }, []);
+
   function openMenu() {
     setIsMenuOpen(true);
   }
@@ -111,22 +127,6 @@ function App() {
     });
   }
 
-  React.useEffect(() => {
-    tokenCheck ()
-  }, []);
-
-  function tokenCheck() {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt){
-      auth.getContent(jwt).then((res) => {
-        if (res.data){
-          setLoggedIn(true);
-        }
-      })
-      .catch(err => console.log(err));
-    }
-  }
-
   return (
     <div className="root">
       <MainPageContext.Provider value={mainPage}> 
@@ -178,7 +178,9 @@ function App() {
           setSearchResultArray={setSearchResultArray}
           handleLogin={handleLogin}
           setRedirect={setRedirect}
-          deleteArticle={deleteArticle} />
+          deleteArticle={deleteArticle} 
+          handleLoginPopupClick={handleLoginPopupClick}
+          tokenCheck={tokenCheck}/>
         </Switch>
       <Footer mainPageChange={mainPageChange}/>
       </CurrentUserContext.Provider>

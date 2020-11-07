@@ -3,22 +3,19 @@ import { Route, Redirect } from "react-router-dom";
 
 
 const ProtectedRoute = ({ component: Component, ...props  }) => {
-  //props.setRedirect(true)
+
+  React.useEffect(() => {
+    if (!props.loggedIn) {
+      props.handleLoginPopupClick();
+    }
+  });
 
   return (
     <Route>
-      {
-        () => props.loggedIn ? <Component {...props} /> : <Redirect
-        to={{
-          pathname: "/",
-          state: { referrer: true }
-        }}
-        redirect ={true}
-      /> 
-      }
-    </Route>
+    {
+      props.loggedIn ? <Component {...props} /> : <Redirect to="./" />
+    }
+  </Route>
 )}
 
 export default ProtectedRoute;
-
-//<Redirect to="./" redirect={true} />
