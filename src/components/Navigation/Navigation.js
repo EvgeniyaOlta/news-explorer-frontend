@@ -2,7 +2,7 @@ import React from 'react';
 import './Navigation.css';
 import { MainPageContext } from '../../context/MainPageContext.js';
 import { CurrentUserContext } from '../../context/CurrentUserContext.js';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import menuBlack from '../../images/menu-black.svg'
 import menuWhite from '../../images/menu-white.svg'
 import exiteBlack from '../../images/exite.svg'
@@ -11,9 +11,11 @@ import exiteWhite from '../../images/exite-white.svg'
 function Navigation(props) {
   const mainPage = React.useContext(MainPageContext);
   const currentUser = React.useContext(CurrentUserContext);
+  const history = useHistory();
   const name = (currentUser === null ? '' : currentUser.name);
 
   function signOut() {
+    history.push('/');
     localStorage.removeItem('jwt');
     props.setCurrentUser(null);
     props.handleLogout();

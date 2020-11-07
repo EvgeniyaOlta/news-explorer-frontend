@@ -52,7 +52,7 @@ function App() {
         console.error('Что-то пошло не так.');
       }); 
     }
-  }, [loggedIn]);
+  }, [loggedIn, savedNewsArray]);
   
   function openMenu() {
     setIsMenuOpen(true);
@@ -74,7 +74,6 @@ function App() {
   }
 
   function handleInfoTooltipClick(e) {
-    e.preventDefault();
     closeAllPopups();
     setIsInfoTooltipOkOpen(true);
   }
@@ -102,6 +101,15 @@ function App() {
   function handleLogout(){
     setLoggedIn(false) 
   };
+  
+  function deleteArticle (id) {
+    mainApi.deleteCard(id).then(() => {
+    const newSavedNewsArray = savedNewsArray.filter(function(item) {
+      return id !== item._id;
+    });
+    setSavedNewsArray(newSavedNewsArray);
+    });
+  }
 
   React.useEffect(() => {
     tokenCheck ()
@@ -159,7 +167,8 @@ function App() {
             setRedirect={setRedirect}
             redirect={redirect}
             searchInput={searchInput}
-            setSearchInput={setSearchInput}/>
+            setSearchInput={setSearchInput}
+            deleteArticle={deleteArticle}/>
           </Route>
           <ProtectedRoute 
           exact path="/saved-news" 
@@ -168,7 +177,8 @@ function App() {
           savedNewsArray={savedNewsArray} 
           setSearchResultArray={setSearchResultArray}
           handleLogin={handleLogin}
-          setRedirect={setRedirect} />
+          setRedirect={setRedirect}
+          deleteArticle={deleteArticle} />
         </Switch>
       <Footer mainPageChange={mainPageChange}/>
       </CurrentUserContext.Provider>

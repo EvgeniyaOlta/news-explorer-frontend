@@ -99,12 +99,15 @@ function Login(props) {
         setPassword('');
         props.setCurrentUser(data);
         props.closePopup();
-        props.handleLogin();
+        
       } else {
         console.log('error')
       }
     })
+    .then(props.handleLogin())
     .catch(err => console.log(err)); 
+    console.log(props.setCurrentUser)
+
   }
 
 

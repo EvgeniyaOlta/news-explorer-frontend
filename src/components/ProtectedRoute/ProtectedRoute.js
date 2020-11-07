@@ -13,6 +13,7 @@ const ProtectedRoute = ({ component: Component, ...props  }) => {
           pathname: "/",
           state: { referrer: true }
         }}
+        redirect ={true}
       /> 
       }
     </Route>

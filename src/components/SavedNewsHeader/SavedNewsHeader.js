@@ -32,7 +32,6 @@ function SavedNewsHeader(props) {
   const sortedKeywordArray = sortByFrequencyAndRemoveDuplicates(keywordArray);
   const keywordArrayString = sortedKeywordArray.join(', ');
   
-  console.log(sortedKeywordArray, keywordArrayString);
 
   return (
     <section className="saved-news-header">

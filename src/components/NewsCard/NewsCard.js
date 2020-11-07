@@ -15,16 +15,18 @@ function NewsCard(props) {
   const [removeInfoSpan, setRemoveInfoSpan] = React.useState(false);
   const [saveInfoSpan, setSaveInfoSpan] = React.useState(false);
   const [savedCard, setSavedCard] = React.useState(false);
-
+  const [idSearchCard, setIdSearchCard] = React.useState('');
   const article = props.article;
-  
+  const idCard = (mainPage ? idSearchCard : article._id)
+
   const splitedDate =  (props.pageName === 'main' ? article.publishedAt.split('-') : article.date.split('-'));
   const year = splitedDate[0];
   const date = splitedDate[2].slice(0, 2);
   const month = months.find(month => month.id === splitedDate[1])
 
   function saveArticle () {
-    const articleKeyword = props.searchInput
+    console.log(article)
+    const articleKeyword = JSON.parse(localStorage.getItem('searchInputValue'))
     const articleTitle = article.title
     const articleText = article.description
     const articleDate = article.publishedAt
@@ -32,22 +34,18 @@ function NewsCard(props) {
     const articleLink = article.url
     const articleImage = article.urlToImage
     mainApi.postNewCard(articleKeyword, articleTitle, articleText, articleDate, articleSource, articleLink, articleImage).then((newSavedNews) => {
+      setIdSearchCard(newSavedNews.data._id)
       props.setSavedNewsArray([...props.savedNewsArray, newSavedNews]);
     });
-      setSavedCard(true)
-      
-    }
+    setSavedCard(true)
+  }
   
   function deleteArticle () {
-    mainApi.deleteCard(article._id).then(() => {
-    const newSavedNewsArray = props.savedNewsArray.filter(function(item) {
-      return article._id !== item._id;
-    });
-    props.setSavedNewsArray(newSavedNewsArray);
-    });
-     setSavedCard(false)
-  }
+    props.deleteArticle(idCard);
 
+    console.log(props.loggedIn)
+    setSavedCard(false);
+  }
 
   function showRemoveInfoSpan(){
     setRemoveInfoSpan(true);
@@ -71,7 +69,7 @@ function NewsCard(props) {
       {!props.loggedIn && (
         <button className="news-card__button news-card__button_not-saved"
         onMouseOut={hiddenSaveInfoSpan} 
-        onMouseOver={showSaveInfoSpan}
+        onClick={showSaveInfoSpan}
         style={{ backgroundImage: `url(${save})` }}></button>
       )}
       {!props.loggedIn && (
@@ -79,15 +77,14 @@ function NewsCard(props) {
       className="news-card__save-info-span" 
       style={{ visibility: `${saveInfoSpan ? 'visible' : 'hidden'}`}} >Войдите, чтобы сохранять статьи</span>
       )}
+      
 
       {props.loggedIn && (
         <button className="news-card__button news-card__button_not-saved"
-        onMouseOut={hiddenSaveInfoSpan} 
-        onMouseOver={showSaveInfoSpan}
         onClick={savedCard ? deleteArticle : saveArticle }
         style={{ backgroundImage: `url(${savedCard ? saved : activeSave })`}}></button>
       )}
-
+      
 
       {!mainPage && (
         <button 
@@ -97,11 +94,9 @@ function NewsCard(props) {
         onMouseOver={showRemoveInfoSpan}
         onClick={deleteArticle}></button>
       )}
-
       {!mainPage && (
         <span className="news-card__remove-info-span" style={{ visibility: `${removeInfoSpan ? 'visible' : 'hidden'}`}} >Убрать из сохранённых</span>
       )} 
-
       {!mainPage && (
         <span className="news-card__keyword">{props.article.keyword}</span>
       )}

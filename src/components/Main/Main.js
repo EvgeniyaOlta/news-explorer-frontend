@@ -15,17 +15,10 @@ function Main(props) {
   const [notFoundActive, setNotFoundActive] = React.useState(false);
   const [searchError, setSearchError] = React.useState(false);
 
-  //const searchResultArray = JSON.parse(localStorage.getItem('searchResultArray'));
+  const localSrorageSearchResultArray = JSON.parse(localStorage.getItem('searchResultArray'));
   const [pageName, setPageName] = React.useState('main');
   
-
-  function checkRedirect() {
-    if (props.redirect){
-      props.handleLoginPopupClick()
-    }
-    else{console.log('wow')}
-  }
-  checkRedirect();
+  const searchResultArray = (localSrorageSearchResultArray ? localSrorageSearchResultArray : '')
 
   return (
     <main className="main">
@@ -43,15 +36,16 @@ function Main(props) {
       {notFoundActive && 
       <NotFound />
       }
-      {props.searchResultArray !== '' &&
+      {searchResultArray && searchResultArray !=='' &&
       <SearchResult 
-      searchResultArray={props.searchResultArray} 
+      searchResultArray={searchResultArray} 
       searchError={searchError} 
       loggedIn={props.loggedIn}
       setSavedNewsArray={props.setSavedNewsArray}
       savedNewsArray={props.savedNewsArray}
       searchInput={props.searchInput}
-      pageName={pageName}/>
+      pageName={pageName}
+      deleteArticle={props.deleteArticle}/>
       }
       <About />
       <Login

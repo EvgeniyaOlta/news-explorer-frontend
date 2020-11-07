@@ -29,7 +29,8 @@ function NewsCardList(props) {
           savedNewsArray={props.savedNewsArray}
           searchResultArray={props.searchResultArray}
           searchInput={props.searchInput}
-          pageName={props.pageName}/>
+          pageName={props.pageName}
+          deleteArticle={props.deleteArticle}/>
         )}  
       </div>
       {cardsAmount > 3 && rest > 0 && (

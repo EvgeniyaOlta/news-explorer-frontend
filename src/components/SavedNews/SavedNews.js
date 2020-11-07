@@ -12,7 +12,8 @@ function SavedNews(props) {
       <NewsCardList 
       array={props.savedNewsArray} 
       pageName={pageName} 
-      setPageName={setPageName}></NewsCardList>
+      setPageName={setPageName}
+      deleteArticle={props.deleteArticle}></NewsCardList>
     </section>
   )
 };

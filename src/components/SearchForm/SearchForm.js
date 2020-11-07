@@ -67,8 +67,10 @@ function SearchForm(props) {
           if (data.articles.length === 0) {
             props.setNotFoundActive(true)
             } else { 
-            props.setSearchResultArray(data.articles);
             localStorage.setItem('searchResultArray', JSON.stringify(data.articles));
+            localStorage.setItem('searchInputValue', JSON.stringify(props.searchInput));
+            props.setSearchResultArray(data.articles);
+            props.setSearchInput(props.searchInput);
             }
         })
         .catch(() => {
@@ -80,6 +82,8 @@ function SearchForm(props) {
         }); 
     }
   }
+  //в первом then я обновляю локальное хранилище,
+  // во втором then я обновляю стейт, т е пишу setArticles(JSON.parse(localStorage.get..)) 
 
   return (
     <section className="search-form">
@@ -91,7 +95,7 @@ function SearchForm(props) {
         type='text' 
         minLength="2" 
         maxLength="30" 
-        placeholder='Введите тему новости' 
+        placeholder='Введите тему новости'
         onChange={handleSearchInputChange} />
         <span className={`search-form__input-error ${searchInputError.classError}`}>{searchInputError.errorMessage}</span>
         <button className="search-form__button" type='submit'

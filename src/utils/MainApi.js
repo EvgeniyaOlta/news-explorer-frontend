@@ -15,7 +15,6 @@ class MainApi {
   }
 
   postNewCard (articleKeyword, articleTitle, articleText, articleDate, articleSource, articleLink, articleImage) {
-    console.log('')
     return fetch(`${this._baseUrl}/articles`, {
       method: 'POST',
       headers: {
@@ -44,7 +43,6 @@ class MainApi {
   }
 
   deleteCard (articleId) {
-    console.log(`${this._baseUrl}/articles/${articleId}`)
     return fetch(`${this._baseUrl}/articles/${articleId}`, {
       method: 'DELETE',
       headers: {
