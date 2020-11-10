@@ -16,9 +16,9 @@ function Navigation(props) {
 
   function signOut() {
     history.push('/');
+    props.handleLogout();
     localStorage.removeItem('jwt');
     props.setCurrentUser(null);
-    props.handleLogout();
   }
 
   return (

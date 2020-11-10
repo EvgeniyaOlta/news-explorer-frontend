@@ -25,7 +25,6 @@ function NewsCard(props) {
   const month = months.find(month => month.id === splitedDate[1])
 
   function saveArticle () {
-    console.log(article)
     const articleKeyword = JSON.parse(localStorage.getItem('searchInputValue'))
     const articleTitle = article.title
     const articleText = article.description
@@ -42,8 +41,6 @@ function NewsCard(props) {
   
   function deleteArticle () {
     props.deleteArticle(idCard);
-
-    console.log(props.loggedIn)
     setSavedCard(false);
   }
 

@@ -53,7 +53,8 @@ function Main(props) {
       closePopup={props.closeAllPopups} 
       openRegister={props.handleRegisterPopupClick}
       handleLogin={props.handleLogin}
-      setCurrentUser={props.setCurrentUser}/>
+      setCurrentUser={props.setCurrentUser}
+      loggedIn={props.loggedIn}/>
       <Register 
       isOpen={props.isRegisterPopupOpen}
       closePopup={props.closeAllPopups}

@@ -180,7 +180,8 @@ function App() {
           setRedirect={setRedirect}
           deleteArticle={deleteArticle} 
           handleLoginPopupClick={handleLoginPopupClick}
-          tokenCheck={tokenCheck}/>
+          tokenCheck={tokenCheck}
+          setMainPage={setMainPage}/>
         </Switch>
       <Footer mainPageChange={mainPageChange}/>
       </CurrentUserContext.Provider>

@@ -97,17 +97,13 @@ function Login(props) {
       if (data){
         setEmail('');
         setPassword('');
-        props.setCurrentUser(data);
         props.closePopup();
-        
       } else {
         console.log('error')
       }
     })
-    .then(props.handleLogin())
+    .then(() => props.handleLogin())
     .catch(err => console.log(err)); 
-    console.log(props.setCurrentUser)
-
   }
 
 
