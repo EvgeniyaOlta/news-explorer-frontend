@@ -1,14 +1,21 @@
-const jwt = localStorage.getItem('jwt')
+let jwt
 
 class MainApi {
   constructor(data) {
     this._baseUrl = data.baseUrl;
-    this._token = data.token;
   }
   
+  setJWT(token) {
+    jwt = token
+  }
+
+  removeJWT() {
+    jwt = null
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {headers: {
-      authorization: `Bearer ${this._token}`
+      authorization: `Bearer ${jwt}`
       }
     })
     .then(this._returnErrorResponse)
@@ -18,7 +25,7 @@ class MainApi {
     return fetch(`${this._baseUrl}/articles`, {
       method: 'POST',
       headers: {
-        authorization: `Bearer ${this._token}`,
+        authorization: `Bearer ${jwt}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -36,7 +43,7 @@ class MainApi {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/articles`, {headers: {
-      authorization: `Bearer ${this._token}`
+      authorization: `Bearer ${jwt}`
       }
     })
     .then(this._returnErrorResponse)
@@ -46,7 +53,7 @@ class MainApi {
     return fetch(`${this._baseUrl}/articles/${articleId}`, {
       method: 'DELETE',
       headers: {
-        authorization: `Bearer ${this._token}`
+        authorization: `Bearer ${jwt}`
         }
     })
   .then(this._returnErrorResponse)
@@ -62,7 +69,6 @@ class MainApi {
 
 const mainApi = new MainApi({
   baseUrl: 'https://news-olta.students.nomoreparties.co',
-  token: jwt,
 });
 
 export default mainApi;

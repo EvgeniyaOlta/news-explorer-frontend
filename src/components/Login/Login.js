@@ -88,22 +88,23 @@ function Login(props) {
     }
   }
 
-  function handleSubmit (e) {
+  async function handleSubmit (e) {
     e.preventDefault();
     if (!email || !password){
       return;
     }  
-    auth.authorize(email, password).then((data) => {
+    await auth.authorize(email, password).then((data) => {
       if (data){
         setEmail('');
         setPassword('');
         props.closePopup();
+        props.handleLogin()
       } else {
         console.log('error')
       }
     })
-    .then(() => props.handleLogin())
     .catch(err => console.log(err)); 
+
   }
 
 

@@ -15,10 +15,8 @@ function Navigation(props) {
   const name = (currentUser === null ? '' : currentUser.name);
 
   function signOut() {
-    history.push('/');
     props.handleLogout();
-    localStorage.removeItem('jwt');
-    props.setCurrentUser(null);
+    history.push('/');
   }
 
   return (

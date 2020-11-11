@@ -20,8 +20,8 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState(null);
-  const [savedNewsArray, setSavedNewsArray] = React.useState('');
-  const [searchResultArray, setSearchResultArray] = React.useState('');
+  const [savedNewsArray, setSavedNewsArray] = React.useState([]);
+  const [searchResultArray, setSearchResultArray] = React.useState([]);
   const [redirect, setRedirect] = React.useState(false);
   const [searchInput, setSearchInput] = React.useState('');
 
@@ -31,6 +31,7 @@ function App() {
       setCurrentUser(null)
     }
     else{ 
+    mainApi.setJWT(localStorage.getItem('jwt'))
     mainApi.getUserInfo()
     .then((userInfoData) => {
       setCurrentUser(userInfoData.data);
@@ -43,9 +44,11 @@ function App() {
 
   React.useEffect(() => {
     if (!loggedIn){
-      setSavedNewsArray('');
+      setSavedNewsArray([]);
     }
-    else{mainApi.getInitialCards()
+    else{
+      mainApi.setJWT(localStorage.getItem('jwt'))
+      mainApi.getInitialCards()
       .then(cardsInfoData => {
         setSavedNewsArray(cardsInfoData.data);
       })
@@ -53,11 +56,12 @@ function App() {
         console.error('Что-то пошло не так.');
       }); 
     }
-  }, [loggedIn, savedNewsArray]);
+  }, [loggedIn]);
   
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
     if (jwt){
+      mainApi.setJWT(jwt)
       auth.getContent(jwt).then((res) => {
         if (res.data){
           setLoggedIn(true);
@@ -115,7 +119,11 @@ function App() {
   };
   
   function handleLogout(){
-    setLoggedIn(false) 
+    mainApi.removeJWT()
+    localStorage.removeItem('jwt');
+    setCurrentUser(null);
+    setMainPage(true)
+    setLoggedIn(false)
   };
   
   function deleteArticle (id) {
@@ -180,8 +188,7 @@ function App() {
           setRedirect={setRedirect}
           deleteArticle={deleteArticle} 
           handleLoginPopupClick={handleLoginPopupClick}
-          tokenCheck={tokenCheck}
-          setMainPage={setMainPage}/>
+          tokenCheck={tokenCheck}/>
         </Switch>
       <Footer mainPageChange={mainPageChange}/>
       </CurrentUserContext.Provider>

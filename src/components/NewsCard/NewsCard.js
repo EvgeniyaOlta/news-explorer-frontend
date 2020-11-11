@@ -6,12 +6,14 @@ import saved from '../../images/saved.svg';
 import months from '../../utils/constants'
 import remove from '../../images/remove.svg';
 import { MainPageContext } from '../../context/MainPageContext.js';
+import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import mainApi from '../../utils/MainApi';
 
 
 function NewsCard(props) {
-  
   const mainPage = React.useContext(MainPageContext);
+  const currentUser = React.useContext(CurrentUserContext);
+
   const [removeInfoSpan, setRemoveInfoSpan] = React.useState(false);
   const [saveInfoSpan, setSaveInfoSpan] = React.useState(false);
   const [savedCard, setSavedCard] = React.useState(false);
@@ -25,6 +27,7 @@ function NewsCard(props) {
   const month = months.find(month => month.id === splitedDate[1])
 
   function saveArticle () {
+    console.log(currentUser)
     const articleKeyword = JSON.parse(localStorage.getItem('searchInputValue'))
     const articleTitle = article.title
     const articleText = article.description
@@ -35,12 +38,15 @@ function NewsCard(props) {
     mainApi.postNewCard(articleKeyword, articleTitle, articleText, articleDate, articleSource, articleLink, articleImage).then((newSavedNews) => {
       setIdSearchCard(newSavedNews.data._id)
       props.setSavedNewsArray([...props.savedNewsArray, newSavedNews]);
+      console.log(newSavedNews);
     });
     setSavedCard(true)
   }
   
   function deleteArticle () {
     props.deleteArticle(idCard);
+
+    console.log(props.loggedIn)
     setSavedCard(false);
   }
 
