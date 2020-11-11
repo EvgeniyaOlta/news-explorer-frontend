@@ -25,7 +25,6 @@ function App() {
   const [redirect, setRedirect] = React.useState(false);
   const [searchInput, setSearchInput] = React.useState('');
 
-
   React.useEffect(() => {
     if (!loggedIn){
       setCurrentUser(null)
@@ -43,20 +42,24 @@ function App() {
   }, [loggedIn]);
 
   React.useEffect(() => {
-    if (!loggedIn){
+    if (!loggedIn ){
       setSavedNewsArray([]);
     }
-    else{
+    else{ if (currentUser !== null) {
       mainApi.setJWT(localStorage.getItem('jwt'))
       mainApi.getInitialCards()
       .then(cardsInfoData => {
-        setSavedNewsArray(cardsInfoData.data);
+        const currentUserSavedNews = cardsInfoData.data.filter(function(article) {
+          return article.owner === currentUser._id;
+        });
+        setSavedNewsArray(currentUserSavedNews);
       })
       .catch(() => {
         console.error('Что-то пошло не так.');
       }); 
     }
-  }, [loggedIn]);
+    }
+  }, [loggedIn, currentUser]);
   
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');

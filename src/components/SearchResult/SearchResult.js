@@ -3,6 +3,11 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 import './SearchResult.css';
 
 function SearchResult(props) {
+  
+//  const newArray = props.savedNewsArray.find(item => item.title === article.title)
+//  .map(function(name) {
+//    return name.length;
+//  });
 
   return (
     <div className="search-result"> 
