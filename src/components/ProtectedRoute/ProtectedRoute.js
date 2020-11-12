@@ -4,15 +4,18 @@ import { Route, Redirect } from "react-router-dom";
 const ProtectedRoute = ({ component: Component, ...props  }) => {
 
   React.useEffect(() => {
-    if (!props.loggedIn) {
+    if  (localStorage.getItem('jwt')=== null) {
+      console.log('frf')
       props.handleLoginPopupClick();
+    } else {
+      props.setMainPage(false)
     }
-  }, [props.loggedIn]);
+  });
 
   return (
     <Route>
     {
-      props.loggedIn ? <Component {...props} /> : <Redirect to="./" />
+      ()=> localStorage.getItem('jwt') ? <Component {...props} /> : <Redirect to="./" />
     }
   </Route>
 )}
