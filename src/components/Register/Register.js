@@ -118,13 +118,10 @@ function Register(props) {
 
     auth.register(email, password, name).then((res) => {
       if(res.data){
-        console.log(res.data)
         setEmail('');
         setPassword('');
         setName('');
-        
         props.openInfoTooltip();
-        console.log('ddd')
       } 
       })
     .catch((err) => {

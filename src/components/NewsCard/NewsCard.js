@@ -70,7 +70,6 @@ function NewsCard(props) {
   getDate()
 
   function saveArticle () {
-    console.log('save')
     const articleKeyword = JSON.parse(localStorage.getItem('searchInputValue'))
     const articleTitle = article.title
     const articleText = article.description

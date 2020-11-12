@@ -54,7 +54,6 @@ function SearchForm(props) {
       const currentDate = `${year}-${month + 1}-${day}`
     
       const from = date.setDate(date.getDate() - 7);
-      console.log(from)
       const fromYear = date.getFullYear();
       const fromMonth = date.getMonth();
       const fromDay = date.getDate();

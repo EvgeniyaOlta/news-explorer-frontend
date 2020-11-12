@@ -2,12 +2,8 @@ import React from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import './Login.css'
 import * as auth from '../../auth.js';
-import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 
 function Login(props) { 
-
-  const currentUser = React.useContext(CurrentUserContext);
-
   const [email, setEmail] = React.useState('');
   const [emailError, setEmailError] = React.useState({
     classInput: '',

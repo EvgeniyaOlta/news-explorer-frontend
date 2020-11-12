@@ -5,7 +5,6 @@ const ProtectedRoute = ({ component: Component, ...props  }) => {
 
   React.useEffect(() => {
     if  (localStorage.getItem('jwt')=== null) {
-      console.log('frf')
       props.handleLoginPopupClick();
     } else {
       props.setMainPage(false)
