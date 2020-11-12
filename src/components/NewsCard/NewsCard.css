@@ -36,16 +36,6 @@
   cursor: pointer;
 }
 
-.news-card__button_saved{
-  background-image: url(../../images/saved.svg);
-}
-.news-card__button_not-saved{
-  background-image: url(../../images/save.svg);
-}
-.news-card__button_not-saved:hover {
-  background-image: url(../../images/save-hover.svg);
-}
-
 .news-card__keyword{
   display: flex;
   font-family: Roboto, Arial;

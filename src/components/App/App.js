@@ -1,11 +1,15 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import SavedNews from '../SavedNews/SavedNews'
 import './App.css';
-import { MainPageContext } from '../context/MainPageContext.js';
-import { Route, Switch } from 'react-router-dom';
+import { MainPageContext } from '../../context/MainPageContext.js';
+import { CurrentUserContext } from '../../context/CurrentUserContext.js';
+import * as auth from '../../auth.js';
+import mainApi from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; 
 
 function App() {
   const [mainPage, setMainPage] = React.useState(true);
@@ -14,6 +18,64 @@ function App() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = React.useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState(null);
+  const [savedNewsArray, setSavedNewsArray] = React.useState([]);
+  const [searchResultArray, setSearchResultArray] = React.useState([]);
+  const [redirect, setRedirect] = React.useState(false);
+  const [searchInput, setSearchInput] = React.useState('');
+
+  React.useEffect(() => {
+    if (!loggedIn){
+      setCurrentUser(null)
+    }
+    else{ 
+    mainApi.setJWT(localStorage.getItem('jwt'))
+    mainApi.getUserInfo()
+    .then((userInfoData) => {
+      setCurrentUser(userInfoData.data);
+    })
+    .catch(() => {
+      console.error('Что-то пошло не так.');
+    });
+    }
+  }, [loggedIn]);
+
+  React.useEffect(() => {
+    if (!loggedIn ){
+      setSavedNewsArray([]);
+    }
+    else{ if (currentUser !== null) {
+      mainApi.setJWT(localStorage.getItem('jwt'))
+      mainApi.getInitialCards()
+      .then(cardsInfoData => {
+        const currentUserSavedNews = cardsInfoData.data.filter(function(article) {
+          return article.owner === currentUser._id;
+        });
+        setSavedNewsArray(currentUserSavedNews);
+      })
+      .catch(() => {
+        console.error('Что-то пошло не так.');
+      }); 
+    }
+    }
+  }, [loggedIn, currentUser]);
+  
+  function tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt){
+      mainApi.setJWT(jwt)
+      auth.getContent(jwt).then((res) => {
+        if (res.data){
+          setLoggedIn(true);
+        }
+      })
+      .catch(err => console.log(err));
+    }
+  }
+  React.useEffect(() => {
+    tokenCheck ()
+  }, []);
 
   function openMenu() {
     setIsMenuOpen(true);
@@ -23,7 +85,6 @@ function App() {
   } 
   
   function handleLoginPopupClick(e) {
-    e.preventDefault();
     closeAllPopups();
     closeMenu();
     setIsLoginPopupOpen(true);
@@ -36,29 +97,51 @@ function App() {
   }
 
   function handleInfoTooltipClick(e) {
-    e.preventDefault();
     closeAllPopups();
     setIsInfoTooltipOkOpen(true);
   }
 
   function closeAllPopups() {
+    setRedirect(false)
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
     setIsInfoTooltipOkOpen(false);
     setIsMenuOpen(false);
-    console.log(isMenuOpen)
   }
 
   function mainPageChange () {
     setMainPage(true);
   }
+  
   function savedPageChange () {
     setMainPage(false);
+  }
+
+  function handleLogin(){
+    setLoggedIn(true) 
+  };
+  
+  function handleLogout(){
+    mainApi.removeJWT()
+    localStorage.removeItem('jwt');
+    setCurrentUser(null);
+    setMainPage(true)
+    setLoggedIn(false)
+  };
+  
+  function deleteArticle (id) {
+    mainApi.deleteCard(id).then(() => {
+    const newSavedNewsArray = savedNewsArray.filter(function(item) {
+      return id !== item._id;
+    });
+    setSavedNewsArray(newSavedNewsArray);
+    });
   }
 
   return (
     <div className="root">
       <MainPageContext.Provider value={mainPage}> 
+      <CurrentUserContext.Provider value={currentUser}>
       <Header 
       closeMenu={closeMenu}
       openMenu={openMenu}
@@ -68,7 +151,12 @@ function App() {
       savedPageChange={savedPageChange}
       isInfoTooltipOkOpen={isInfoTooltipOkOpen}
       isLoginPopupOpen={isLoginPopupOpen}
-      isRegisterPopupOpen={isRegisterPopupOpen}/>
+      isRegisterPopupOpen={isRegisterPopupOpen}
+      loggedIn={loggedIn}
+      handleLogout={handleLogout}
+      setLoggedIn={setLoggedIn}
+      setCurrentUser={setCurrentUser}
+      />
       
         <Switch>
           <Route exact path="/"> 
@@ -79,13 +167,35 @@ function App() {
             isRegisterPopupOpen={isRegisterPopupOpen}
             handleRegisterPopupClick={handleRegisterPopupClick}
             handleInfoTooltipClick={handleInfoTooltipClick}
-            closeAllPopups={closeAllPopups}/>
+            closeAllPopups={closeAllPopups}
+            handleLogin={handleLogin} 
+            loggedIn={loggedIn}
+            setCurrentUser={setCurrentUser}
+            setSavedNewsArray={setSavedNewsArray}
+            savedNewsArray={savedNewsArray}
+            searchResultArray={searchResultArray}
+            setSearchResultArray={setSearchResultArray} 
+            setRedirect={setRedirect}
+            redirect={redirect}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            deleteArticle={deleteArticle}/>
           </Route>
-          <Route path="/saved-news">
-            <SavedNews />
-          </Route>
+          <ProtectedRoute 
+          exact path="/saved-news" 
+          loggedIn={loggedIn} 
+          component={SavedNews} 
+          savedNewsArray={savedNewsArray} 
+          setSearchResultArray={setSearchResultArray}
+          handleLogin={handleLogin}
+          setRedirect={setRedirect}
+          deleteArticle={deleteArticle} 
+          handleLoginPopupClick={handleLoginPopupClick}
+          tokenCheck={tokenCheck}
+          setMainPage={setMainPage}/>
         </Switch>
       <Footer mainPageChange={mainPageChange}/>
+      </CurrentUserContext.Provider>
       </MainPageContext.Provider>
     </div>
   )

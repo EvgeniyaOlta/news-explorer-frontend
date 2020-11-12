@@ -1,11 +1,10 @@
 import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import './Header.css';
-import { MainPageContext } from '../context/MainPageContext.js';
+import { MainPageContext } from '../../context/MainPageContext.js';
 
 function Header(props) {
   const mainPage = React.useContext(MainPageContext);
-
 
   return (
     <div className="header" style={{ outline: `${mainPage || props.isMenuOpen ? '1px solid white' : '1px solid black'}`}}>
@@ -19,6 +18,9 @@ function Header(props) {
       openMenu={props.openMenu}
       isLoginPopupOpen={props.isLoginPopupOpen}
       isRegisterPopupOpen={props.isRegisterPopupOpen}
+      loggedIn={props.loggedIn}
+      handleLogout={props.handleLogout}
+      setCurrentUser={props.setCurrentUser}
       />
     </div>
   )
