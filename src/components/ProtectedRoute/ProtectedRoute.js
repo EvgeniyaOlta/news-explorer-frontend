@@ -7,7 +7,7 @@ const ProtectedRoute = ({ component: Component, ...props  }) => {
     if (!props.loggedIn) {
       props.handleLoginPopupClick();
     }
-  });
+  }, [props.loggedIn]);
 
   return (
     <Route>

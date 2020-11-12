@@ -6,7 +6,6 @@ import saved from '../../images/saved.svg';
 import months from '../../utils/constants'
 import remove from '../../images/remove.svg';
 import { MainPageContext } from '../../context/MainPageContext.js';
-//import { CurrentUserContext } from '../../context/CurrentUserContext.js';
 import mainApi from '../../utils/MainApi';
 
 
@@ -20,8 +19,6 @@ function NewsCard(props) {
   const article = props.article;
   const idCard = (mainPage ? idSearchCard : article._id)
   
-  //на основной странице проверяем, есть ли такая статья в SavedNewsArray
-  //если есть, savedCard = true
   React.useEffect(() => {
     if (mainPage) {
       const isSaved = props.savedNewsArray.some((item) => item.text === article.description
@@ -72,11 +69,6 @@ function NewsCard(props) {
   }
   getDate()
 
-  
-  //Когда пользователь вошёл, иконка должна стать активной. Если новость сохранена, иконка должна быть с синей заливкой.
-  //Клик по иконке без заливки должен отправлять запрос к /articles нашего API на сохранение статьи. Клик по иконке с заливкой — запрос на удаление.
-  //При сохранении и удалении статьи заливка иконки должна изменяться.
-
   function saveArticle () {
     console.log('save')
     const articleKeyword = JSON.parse(localStorage.getItem('searchInputValue'))
@@ -88,15 +80,12 @@ function NewsCard(props) {
     const articleImage = (article.urlToImage === null ? '' : article.urlToImage)
     mainApi.postNewCard(articleKeyword, articleTitle, articleText, articleDate, articleSource, articleLink, articleImage).then((newSavedNews) => {
       setIdSearchCard(newSavedNews.data._id)
-      props.setSavedNewsArray([...props.savedNewsArray, newSavedNews]);
+      props.setSavedNewsArray(oldArray => [...oldArray, newSavedNews.data]);
     });
-    //setSavedCard(true)
   }
   
   function deleteArticle () {
-    console.log('del')
     props.deleteArticle(idCard);
-    //setSavedCard(false);
   }
 
   function showRemoveInfoSpan(){

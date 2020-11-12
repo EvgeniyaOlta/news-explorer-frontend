@@ -23,7 +23,7 @@ function Navigation(props) {
     <section className={`navigation ${props.isMenuOpen && "navigation_opened-menu"}`}> 
       <NavLink 
       to="/" 
-      className={`navigation__button navigation__button_main ${props.isMenuOpen && "navigation__button_opened-menu"}`} 
+    className={`navigation__button navigation__button_main ${props.isMenuOpen && "navigation__button_opened-menu"}`} 
       activeClassName="navigation__button_active-main" style={{ color: `${mainPage || props.isMenuOpen ? 'white' : 'black'}`}} 
       onClick={props.mainPageChange}>Главная</NavLink>
 

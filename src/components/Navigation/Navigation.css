@@ -185,7 +185,10 @@
     color: white;
     position: relative;
     left: 0px;
-    display: inline;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     border: 1px solid;
     box-sizing: border-box;
     border-radius: 100px;
@@ -207,6 +210,9 @@
     padding-bottom: 16px;
     background-image: url(../../images/close.svg);
     background-size: cover;
+  }
+  .navigation__button_main{
+    padding-top: 10px;
   }
 }
 
